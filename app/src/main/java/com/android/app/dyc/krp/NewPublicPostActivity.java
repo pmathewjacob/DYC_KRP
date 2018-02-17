@@ -15,16 +15,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.android.app.dyc.krp.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.android.app.dyc.krp.Utils.getUid;
+public class NewPublicPostActivity extends BaseActivity {
 
-public class NewPostActivity extends BaseActivity {
-
-    private static final String TAG = "NewPostActivity";
+    private static final String TAG = "NewPublicPostActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
@@ -89,7 +86,7 @@ public class NewPostActivity extends BaseActivity {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(NewPostActivity.this,
+                            Toast.makeText(NewPublicPostActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {

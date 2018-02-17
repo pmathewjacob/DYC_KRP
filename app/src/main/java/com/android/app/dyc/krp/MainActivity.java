@@ -26,12 +26,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.android.app.dyc.krp.fragment.MainFragment;
 import com.android.app.dyc.krp.fragment.MyPostsFragment;
 import com.android.app.dyc.krp.fragment.MyTopPostsFragment;
 import com.android.app.dyc.krp.fragment.RecentPostsFragment;
 import com.android.app.dyc.krp.fragment.RegisterUserFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.android.app.dyc.krp.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class  MainActivity extends BaseActivity {
 
@@ -39,26 +42,36 @@ public class  MainActivity extends BaseActivity {
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
+    private DatabaseReference mDatabase;
+    private Fragment[] mFragments;
+    private String[] mFragmentNames;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         // Create the adapter that will return a fragment for each section
-        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            private final Fragment[] mFragments = new Fragment[] {
+
+            mFragments = new Fragment[]{
+                    new MainFragment(),
                     new RecentPostsFragment(),
                     new MyPostsFragment(),
                     new MyTopPostsFragment(),
                     new RegisterUserFragment()
             };
-            private final String[] mFragmentNames = new String[] {
+
+            mFragmentNames = new String[]{
+                    "Home",
                     getString(R.string.heading_recent),
                     getString(R.string.heading_my_posts),
                     getString(R.string.heading_my_top_posts),
                     "My Registered Members"
             };
+        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+
             @Override
             public Fragment getItem(int position) {
                 return mFragments[position];
@@ -72,11 +85,12 @@ public class  MainActivity extends BaseActivity {
                 return mFragmentNames[position];
             }
         };
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mPagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        mTabLayout = findViewById(R.id.tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
 
         // Button launches NewPostActivity
         findViewById(R.id.fab_new_post).setOnClickListener(new View.OnClickListener() {
@@ -85,6 +99,46 @@ public class  MainActivity extends BaseActivity {
                 startActivity(new Intent(MainActivity.this, NewPostActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Utils.isAdmin(getApplicationContext())) {
+            if (mPagerAdapter.getCount() != 5) {
+                mFragments = new Fragment[]{
+                        new MainFragment(),
+                        new RecentPostsFragment(),
+                        new MyPostsFragment(),
+                        new MyTopPostsFragment(),
+                        new RegisterUserFragment()
+                };
+
+                mFragmentNames = new String[]{
+                        "Home",
+                        getString(R.string.heading_recent),
+                        getString(R.string.heading_my_posts),
+                        getString(R.string.heading_my_top_posts),
+                        "My Registered Members"
+                };
+                mPagerAdapter.notifyDataSetChanged();
+                findViewById(R.id.fab_new_post).setVisibility(View.VISIBLE);
+            }
+        } else if (mPagerAdapter.getCount() != 3) {
+            mFragments = new Fragment[]{
+                    new MainFragment(),
+                    new RecentPostsFragment(),
+                    new RegisterUserFragment()
+            };
+
+            mFragmentNames = new String[]{
+                    "Home",
+                    getString(R.string.heading_recent),
+                    "My Registered Members"
+            };
+            mPagerAdapter.notifyDataSetChanged();
+            findViewById(R.id.fab_new_post).setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -105,5 +159,4 @@ public class  MainActivity extends BaseActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
 }

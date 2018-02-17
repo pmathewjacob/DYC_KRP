@@ -42,7 +42,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
         // Initialize Database
         mPostReference = FirebaseDatabase.getInstance().getReference()
                 .child("register")
-                .child(getUid())
+                .child(Utils.getUid())
                 .child(mPostKey);
 
         // Initialize Views

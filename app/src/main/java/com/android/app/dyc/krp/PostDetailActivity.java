@@ -137,7 +137,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     }
 
     private void postComment() {
-        final String uid = getUid();
+        final String uid = Utils.getUid();
         FirebaseDatabase.getInstance().getReference().child("users").child(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

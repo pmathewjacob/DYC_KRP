@@ -3,9 +3,11 @@ package com.android.app.dyc.krp.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,9 +106,25 @@ public class RegisterUserFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+
+                viewHolder.itemView.setOnDragListener(new View.OnDragListener() {
+                    @Override
+                    public boolean onDrag(View view, DragEvent dragEvent) {
+                        switch (dragEvent.getAction()) {
+                            case DragEvent.ACTION_DRAG_ENDED:
+                                mRecycler.removeView(view);
+                                break;
+                            default:
+
+                        }
+                        return false;
+                    }
+                });
             }
         };
         mRecycler.setAdapter(mAdapter);
+        mRecycler.setItemAnimator(new DefaultItemAnimator());
+
     }
 
     @Override

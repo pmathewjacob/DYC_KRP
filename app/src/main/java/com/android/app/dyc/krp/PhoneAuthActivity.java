@@ -1,7 +1,10 @@
 package com.android.app.dyc.krp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +46,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private static final int STATE_VERIFY_SUCCESS = 4;
     private static final int STATE_SIGNIN_FAILED = 5;
     private static final int STATE_SIGNIN_SUCCESS = 6;
+    private static boolean mSignIn = false;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -72,7 +76,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
-
+        mSignIn = false;
         // Restore instance state
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
@@ -172,6 +176,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 // [START_EXCLUDE]
                 // Update UI
                 updateUI(STATE_CODE_SENT);
+                mSignIn = true;
                 // [END_EXCLUDE]
             }
         };
@@ -387,7 +392,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = user.getPhoneNumber();
+        String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("username", "user");
 
         // Write new user
         writeNewUser(user.getUid(), username, user.getPhoneNumber());
@@ -399,8 +404,8 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
 
     // [START basic_write]
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+    private void writeNewUser(String userId, String name, String phoneNumber) {
+        User user = new User(name, phoneNumber);
 
         mDatabase.child("users").child(userId).setValue(user);
     }
