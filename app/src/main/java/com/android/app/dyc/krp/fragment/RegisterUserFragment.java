@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.android.app.dyc.krp.R;
 import com.android.app.dyc.krp.RegisterUserDetailActivity;
 import com.android.app.dyc.krp.SignUpActivity;
 import com.android.app.dyc.krp.models.RegisterUser;
@@ -23,7 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.android.app.dyc.krp.R;
 
 public class RegisterUserFragment extends Fragment {
 
@@ -49,6 +49,7 @@ public class RegisterUserFragment extends Fragment {
         // [START create_database_reference]
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END create_database_reference]
+
 
         button = rootView.findViewById(R.id.button_Register);
         button.setOnClickListener(new View.OnClickListener() {

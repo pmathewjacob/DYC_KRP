@@ -1,7 +1,7 @@
 package com.android.app.dyc.krp;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -9,13 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.app.dyc.krp.models.RegisterUser;
+import com.android.app.dyc.krp.widget.DatePickerFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.android.app.dyc.krp.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +31,20 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
     private EditText mPhoneNumberField;
     private EditText mFullNameField;
-    private EditText mAgeField;
+    private TextView mAgeField;
     private Spinner mParishField;
     private Spinner mCentreField;
+    private Spinner mGenderField;
     private Button mSignUpButton;
-    private String mCentre, mParish;
+    private String mCentre, mParish, mGender;
     private String[] mParishArray;
     private ArrayAdapter<String> parishAdapter;
+
+    private int mYear;
+    private int mMonth;
+    private int mDay;
+    private ImageView mCalendarImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mAgeField = findViewById(R.id.field_Age);
         mCentreField = findViewById(R.id.field_Centre);
         mParishField = findViewById(R.id.field_Parish);
+        mGenderField = findViewById(R.id.field_Gender);
         mSignUpButton = findViewById(R.id.button_sign_up);
         mParishArray = getResources().getStringArray(R.array.bangalore_parish_names);
         parishAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mParishArray);
@@ -57,6 +67,9 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 .simple_spinner_dropdown_item);
 
         mParishField.setAdapter(parishAdapter);
+        mParish = parishAdapter.getItem(0);
+        mCentre = getResources().getStringArray(R.array.centres)[0];
+        mGender = getResources().getStringArray(R.array.gender)[0];
         mCentreField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -99,8 +112,39 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             }
         });
 
+        mGenderField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mGender = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                mGender = null;
+            }
+        });
+
         // Click listeners
         mSignUpButton.setOnClickListener(this);
+
+        mCalendarImage = findViewById(R.id.register_user_detail_Age_icon);
+
+        mCalendarImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+    }
+
+
+    public void setDob(int year, int month, int day) {
+        mYear = year;
+        mMonth = month;
+        mDay = day;
+
+        mAgeField.setText(mDay + "/" + mMonth + "/" + mYear);
     }
 
     private void signUp() {
@@ -115,10 +159,9 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         final String age = mAgeField.getText().toString();
 
         if(mAuth.getCurrentUser() != null)
-            registerUser(mAuth.getCurrentUser().getUid(), phoneNumber, fullName, mParish, age);
+            registerUser(mAuth.getCurrentUser().getUid(), phoneNumber, fullName, mParish, age, mGender);
         hideProgressDialog();
         // Go to MainActivity
-        startActivity(new Intent(SignUpActivity.this, MainActivity.class));
         finish();
 
     }
@@ -147,6 +190,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             result = false;
         }
 
+        if (!mGenderField.isSelected() && mGender == null) {
+            result = false;
+        }
+
         if (TextUtils.isEmpty(mAgeField.getText().toString())) {
             mAgeField.setError("Required");
             result = false;
@@ -158,8 +205,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     // [START basic_write]
-    private void registerUser(String userId, String phoneNumber, String fullName, String parish, String age) {
-        RegisterUser registerUser = new RegisterUser(phoneNumber, fullName, parish, age);
+    private void registerUser(String userId, String phoneNumber, String fullName, String parish, String age, String gender) {
+        RegisterUser registerUser = new RegisterUser(phoneNumber, fullName, parish, age, gender);
 
         String key = mDatabase.child("register").push().getKey();
         Map<String, Object> postValues = registerUser.toMap();

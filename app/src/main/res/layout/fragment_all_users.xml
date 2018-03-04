@@ -5,18 +5,36 @@
     android:layout_height="match_parent"
     tools:context="com.android.app.dyc.krp.MainActivity">
 
-    <Button
-        android:id="@+id/button_Register"
+    <LinearLayout
+
+        android:id="@+id/button_Register_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/button_register" />
+        android:background="@drawable/button_transparent_bg">
+
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/register" />
+
+        <Button
+            android:id="@+id/button_Register"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="middle"
+            android:text="@string/button_register" />
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/users_messages_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button_Register"
+        android:layout_below="@id/button_Register_layout"
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"

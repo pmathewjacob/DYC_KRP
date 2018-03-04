@@ -11,14 +11,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.android.app.dyc.krp.R;
 
 public class RegisterUserDetailActivity extends BaseActivity{
 
-    private static final String TAG = "RegisterUserDetailAct";
-
     public static final String EXTRA_POST_KEY = "post_key";
-
+    private static final String TAG = "RegisterUserDetailAct";
     private DatabaseReference mPostReference;
     private ValueEventListener mPostListener;
     private String mPostKey;
@@ -27,6 +24,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
     private TextView mPhoneNumber;
     private TextView mAge;
     private TextView mParish;
+    private TextView mGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
         mPhoneNumber = findViewById(R.id.register_user_detail_phoneNumber);
         mParish = findViewById(R.id.register_user_detail_Parish);
         mAge = findViewById(R.id.register_user_detail_Age);
-
+        mGender = findViewById(R.id.register_user_detail_gender);
     }
 
     @Override
@@ -70,6 +68,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
                     mPhoneNumber.setText(registerUser.phoneNumber);
                     mAge.setText(registerUser.age);
                     mParish.setText(registerUser.parish);
+                    mGender.setText(registerUser.gender);
                 }
                 // [END_EXCLUDE]
             }
