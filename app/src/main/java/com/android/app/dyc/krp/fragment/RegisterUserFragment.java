@@ -9,9 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.android.app.dyc.krp.R;
 import com.android.app.dyc.krp.RegisterUserDetailActivity;
@@ -36,9 +37,14 @@ public class RegisterUserFragment extends Fragment {
     private FirebaseRecyclerAdapter<RegisterUser, RegisterUserViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
-    private Button button;
+    private LinearLayout mButtonLayout;
 
     public RegisterUserFragment() {}
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+    }
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -51,8 +57,8 @@ public class RegisterUserFragment extends Fragment {
         // [END create_database_reference]
 
 
-        button = rootView.findViewById(R.id.button_Register);
-        button.setOnClickListener(new View.OnClickListener() {
+        mButtonLayout = rootView.findViewById(R.id.button_Register_layout);
+        mButtonLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Launch SignUpActivity

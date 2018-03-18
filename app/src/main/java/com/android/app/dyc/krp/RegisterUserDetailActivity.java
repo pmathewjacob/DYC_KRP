@@ -2,6 +2,8 @@ package com.android.app.dyc.krp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,28 @@ public class RegisterUserDetailActivity extends BaseActivity{
         mParish = findViewById(R.id.register_user_detail_Parish);
         mAge = findViewById(R.id.register_user_detail_Age);
         mGender = findViewById(R.id.register_user_detail_gender);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_user_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.action_delete && mPostReference != null) {
+            deleteData(mPostReference);
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void deleteData(DatabaseReference reference) {
+        reference.setValue(null);
     }
 
     @Override

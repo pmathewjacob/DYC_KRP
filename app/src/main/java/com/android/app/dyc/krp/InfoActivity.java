@@ -16,18 +16,14 @@
 
 package com.android.app.dyc.krp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.android.app.dyc.krp.fragment.InfoMainFragment;
 import com.android.app.dyc.krp.fragment.InfoThemeFragment;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -57,7 +53,7 @@ public class InfoActivity extends BaseActivity {
 
         mFragmentNames = new String[]{
                 "Info",
-                "Theme",
+                "Speakers",
         };
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 
@@ -85,22 +81,4 @@ public class InfoActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int i = item.getItemId();
-        if (i == R.id.action_logout) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, PhoneAuthActivity.class));
-            finish();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 }

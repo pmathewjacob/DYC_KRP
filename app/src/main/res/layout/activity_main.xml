@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.android.app.dyc.krp.MainActivity">
 
     <android.support.design.widget.TabLayout
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_image_edit"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_image_edit" />
 
 </RelativeLayout>

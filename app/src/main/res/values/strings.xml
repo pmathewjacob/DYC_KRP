@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">DYC KRP</string>
+    <string name="app_name">Chennai-Bangalore DYC 2018</string>
     <string name="action_settings">Settings</string>
     <string name="menu_login">Log in</string>
     <string name="menu_logout">Log out</string>
+    <string name="menu_delete">Delete</string>
     <string name="login_label">Log In</string>
     <string name="email_label">Email</string>
     <string name="password_label">Password</string>
@@ -13,7 +14,7 @@
     <string name="hint_password">password</string>
     <string name="hint_email">email</string>
     <string name="sign_in">Sign In</string>
-    <string name="heading_recent">Recent</string>
+    <string name="heading_recent">Posts</string>
     <string name="heading_my_posts">My Posts</string>
     <string name="heading_my_top_posts">My Top Posts</string>
 
@@ -27,29 +28,112 @@
     <string name="centre_prompt">Choose your Centre</string>
     <string name="parish_prompt">Choose your Parish</string>
     <string name="gender_prompt">Select your Gender</string>
+    <string name="full_name_prompt">Full Name</string>
+    <string name="theme_verse">2 then make my joy complete by being like-minded, having the same love, being one in spirit and of one mind. 3 Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, 4 not looking to your own interests but each of you to the interests of the others.  5 In your relationships with one another, have the same mindset as Christ Jesus:  6 Who, being in very nature[a] God, did not consider equality with God something to be used to his own advantage; 7 rather, he made himself nothing by taking the very nature[b] of a servant, being made in human likeness.</string>
+    <string name="dyc_info1">13th Chennai – Bangalore Diocesan Youth Conference (DYC)</string>
+    <string name="dyc_info2">24th – 27th of May 2018</string>
+    <string name="google_maps_key">AIzaSyAKh9bmSXje3s-Bax9WEZDImKL2AIuCAxY</string>
+    <string name="coming_soon">Coming soon!</string>
+    <string name="d_o_b">D.O.B:</string>
+    <string name="phone_number">Phone Number:</string>
+    <string name="gender">Gender:</string>
+    <string name="parish">Parish:</string>
+    <string name="centre">Centre:</string>
+    <string name="full_name">Full Name:</string>
 
     <string-array name="centres">
+        <item>Andaman and Nicobar</item>
         <item>Bengaluru</item>
         <item>Chennai</item>
+        <item>Coimbatore</item>
         <item>Hyderabad</item>
+        <item>Kuwait</item>
+        <item>Manipal</item>
+        <item>Mangalore</item>
+        <item>Mysore</item>
+        <item>Salem</item>
+        <item>Vellore</item>
         <item>None of the above</item>
     </string-array>
 
     <string-array name="bangalore_parish_names">
-        <item>K R Puram</item>
-        <item>Jalahalli</item>
-        <item>Marathalli</item>
-        <item>Primrose</item>
+        <item>MAR THOMA SYRIAN CHURCH (Primrose)</item>
+        <item>EBENEZER MAR THOMA CHURCH (Jalahalli)</item>
+        <item>BANGALORE EAST MAR THOMA CHURCH (East)</item>
+        <item>JERUSALEM MAR THOMA CHURCH (Hebbal)</item>
+        <item>ST. THOMAS MAR THOMA CHURCH (Marthahalli)</item>
+        <item>ST. STEPHEN\'S MAR THOMA CHURCH (Kormangala)</item>
+        <item>TRINITY MARTHOMA CHURCH (Bangalore West)</item>
+        <item>CHRISTOS MAR THOMA CHURCH (Kengeri)</item>
+        <item>MARTHOMA CONGREGATION (Kothannur)</item>
+        <item>BETHEL MAR THOMA CHURCH (KRP)</item>
         <item>None of the above</item>
     </string-array>
 
     <string-array name="hyderabad_parish_names">
-        <item>Hyderabad</item>
+        <item>ASCENSION MAR THOMA CHURCH HYDERABAD</item>
+        <item>ST. ANDREWS MAR THOMA CHURCH SECUNDERABAD</item>
+        <item>ST.THOMAS MAR THOMA CHURCH BHEL</item>
+        <item>BETHEL MAR THOMA CHURCH NEEREDMET</item>
+        <item>SANTHIMANDIRAM VIJAYAWADA CONGREGATION NEREDMET</item>
         <item>None of the above</item>
     </string-array>
 
     <string-array name="chennai_parish_names">
-        <item>Chennai</item>
+        <item>EMMANUEL MAR THOMA CHURCH TAMBARAM</item>
+        <item>ST PAULS MAR THOMA CHURCH ADAYAR</item>
+        <item>ANNA NAGAR JERUSALEM</item>
+        <item>AVADI ST ANDREWS</item>
+        <item>MADRAS MAR THOMA SYRIAN CHURCH</item>
+        <item>NORTH MADRAS MAR THOMA CHURCH</item>
+        <item>ST.THOMAS MAR THOMA CHURCH,POLLACHI</item>
+        <item>BETHEL MAR THOMA CHURCH PADI</item>
+        <item>ST.THOMAS MAR THOMA CHURCH</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="andaman_and_nicobar_parish_names">
+        <item>ST. PETER\'S MAR THOMA CHURCH</item>
+        <item>ST.THOMAS MAR THOMA CHURCH</item>
+        <item>ST.JOHN\'S MAR THOMA CHURCH</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="coimbatore_parish_names">
+        <item>COIMBATORE MAR THOMA CHURCH</item>
+        <item>NILAGIRI MAR THOMA CHURCH AND MAR THOMA CAMP CENTRE</item>
+        <item>HOREB MAR THOMA CHURCH CO-OPERATIVE COLONY VALPARAI</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="kuwait_parish_names">
+        <item>ST.JAMES MAR THOMA CHURCH</item>
+        <item>ST.THOMAS MAR THOMA CHURCH KUWAIT</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="manipal_parish_names">
+        <item>BETHEL MAR THOMA CHURCH MANIPAL</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="mangalore_parish_names">
+        <item>MANGALORE MAR THOMA CHURCH</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="mysore_parish_names">
+        <item>MAR THOMA SYRIAN CHURCH</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="salem_parish_names">
+        <item>MAR THOMA SYRIAN CHURCH</item>
+        <item>None of the above</item>
+    </string-array>
+
+    <string-array name="vellore_parish_names">
+        <item>ST.THOMAS MAR THOMA SYRIAN CHURCH VELLORE</item>
         <item>None of the above</item>
     </string-array>
 

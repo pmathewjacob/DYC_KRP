@@ -5,3 +5,13 @@
 .DS_Store
 /build
 /captures
+/DYC_KRP.iml
+/app/google-services.json
+app.iml
+debug/
+google-services.json
+src/androidTest/
+/gradle/
+.idea/
+app/src/androidTest/
+gradle/

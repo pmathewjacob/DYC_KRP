@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:backgroundTint="@color/grey_100">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -21,8 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical|center"
-                android:text="Full Name: "
+                android:text="@string/full_name"
                 android:visibility="visible"
                 tools:text="Full Name: " />
 
@@ -33,7 +33,6 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
                 android:maxLines="1"
-                android:text="dummy name: "
                 android:visibility="visible" />
 
         </LinearLayout>
@@ -49,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center"
-                android:text="Phone number: "
+                android:text="@string/phone_number"
                 android:visibility="visible"
                 tools:text="Phone number: " />
 
@@ -60,7 +59,6 @@
                 android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
-                android:text="dummy phoneNumber: "
                 android:visibility="visible" />
         </LinearLayout>
 

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.app.dyc.krp.ComingSoonActivity;
 import com.android.app.dyc.krp.InfoActivity;
 import com.android.app.dyc.krp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +23,7 @@ import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainFragment extends Fragment {
 
@@ -30,9 +33,12 @@ public class MainFragment extends Fragment {
     private DatabaseReference mDatabase;
     private LinearLayout mShare;
     private LinearLayout mInfo;
+    private LinearLayout mLyrics;
+    private LinearLayout mSchedule;
     private ImageView mIcon;
     private TextView mCountdownTimer;
     private long mStartTime;
+    private long mLastClickTime = 0;
     // [END define_database_reference]
 
     public MainFragment() {}
@@ -67,6 +73,10 @@ public class MainFragment extends Fragment {
         mShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 shareVia();
             }
         });
@@ -75,7 +85,35 @@ public class MainFragment extends Fragment {
         mInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 startActivity(new Intent(getActivity(), InfoActivity.class));
+            }
+        });
+
+        mLyrics = rootView.findViewById(R.id.lyrics_button);
+        mLyrics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                startActivity(new Intent(getActivity(), ComingSoonActivity.class));
+            }
+        });
+
+        mSchedule = rootView.findViewById(R.id.schedule_button);
+        mSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
+                startActivity(new Intent(getActivity(), ComingSoonActivity.class));
             }
         });
 
@@ -89,17 +127,14 @@ public class MainFragment extends Fragment {
             int hours = 23 - def.get(Calendar.HOUR_OF_DAY);
             int mins = 59 - def.get(Calendar.MINUTE);
             int sec = 59 - def.get(Calendar.SECOND);
-            mCountdownTimer.setText(days + " days " + hours + ":" + mins + ":" + sec);
+            mCountdownTimer.setText(String.format(Locale.ENGLISH, "%d days %d:%d:%d", days, hours, mins, sec));
 
             new CountDownTimer(mStartTime, 1000) {
 
                 public void onTick(long millisUntilFinished) {
                     if (cal.getTimeInMillis() - System.currentTimeMillis() > 0) {
                         mCountdownTimer.setText(
-                                (cal.get(Calendar.DAY_OF_YEAR) - Calendar.getInstance().get(Calendar.DAY_OF_YEAR) - 1) + " days "
-                                        + (23 - Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) + ":"
-                                        + (59 - Calendar.getInstance().get(Calendar.MINUTE)) + ":"
-                                        + (59 - Calendar.getInstance().get(Calendar.SECOND)));
+                                String.format(Locale.ENGLISH, "%d days %d:%d:%d", cal.get(Calendar.DAY_OF_YEAR) - Calendar.getInstance().get(Calendar.DAY_OF_YEAR) - 1, 23 - Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 59 - Calendar.getInstance().get(Calendar.MINUTE), 59 - Calendar.getInstance().get(Calendar.SECOND)));
                     } else {
                         mCountdownTimer.setText("DYC Started!");
                     }
@@ -130,13 +165,14 @@ public class MainFragment extends Fragment {
 
     public void alert() {
 
-        AlertDialog.Builder alertAdd = new AlertDialog.Builder(
+        final AlertDialog.Builder alertAdd = new AlertDialog.Builder(
                 getActivity());
         LayoutInflater factory = LayoutInflater.from(getActivity());
         final View view = factory.inflate(R.layout.dialog_main, null);
-
         alertAdd.setView(view);
+
         alertAdd.show();
+
     }
 
 
@@ -145,7 +181,7 @@ public class MainFragment extends Fragment {
         i.setType("text/plain");
         i.putExtra(android.content.Intent.EXTRA_SUBJECT, "DYC KRP APP");
         String sAux = "Hey check out the DYC app for 2018!!\n";
-        sAux = sAux + "https://play.google.com/store/apps/details?id=com.sec.android.app.shealth";
+        sAux = sAux + "https://play.google.com/store/apps/details?id=com.android.app.dyc.krp";
         i.putExtra(Intent.EXTRA_TEXT, sAux);
         startActivity(Intent.createChooser(i, "Share via"));
     }

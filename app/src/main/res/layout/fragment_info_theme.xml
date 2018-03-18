@@ -6,5 +6,11 @@
     android:background="@drawable/background"
     tools:context="com.android.app.dyc.krp.InfoActivity">
 
+    <TextView
+        style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coming_soon"
+        android:textAlignment="center" />
 
 </FrameLayout>

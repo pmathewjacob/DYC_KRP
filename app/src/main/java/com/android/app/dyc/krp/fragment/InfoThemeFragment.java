@@ -14,7 +14,7 @@ import com.google.firebase.database.Query;
 
 public class InfoThemeFragment extends Fragment {
 
-    private static final String TAG = "MainFragment";
+    private static final String TAG = "InfoThemeFragment";
 
     // [START define_database_reference]
     private DatabaseReference mDatabase;

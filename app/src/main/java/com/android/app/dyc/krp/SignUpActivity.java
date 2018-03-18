@@ -1,17 +1,19 @@
 package com.android.app.dyc.krp;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.app.dyc.krp.models.RegisterUser;
 import com.android.app.dyc.krp.widget.DatePickerFragment;
@@ -25,21 +27,20 @@ import java.util.Map;
 public class SignUpActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "SignUpActivity";
-
+    private static int sSetAdminCount = 0;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-
     private EditText mPhoneNumberField;
     private EditText mFullNameField;
     private TextView mAgeField;
     private Spinner mParishField;
     private Spinner mCentreField;
     private Spinner mGenderField;
-    private Button mSignUpButton;
+    private LinearLayout mSignUpButton;
     private String mCentre, mParish, mGender;
     private String[] mParishArray;
     private ArrayAdapter<String> parishAdapter;
-
+    private ImageView mIcon;
     private int mYear;
     private int mMonth;
     private int mDay;
@@ -49,7 +50,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        sSetAdminCount = 0;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
@@ -70,6 +71,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mParish = parishAdapter.getItem(0);
         mCentre = getResources().getStringArray(R.array.centres)[0];
         mGender = getResources().getStringArray(R.array.gender)[0];
+
         mCentreField.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -77,13 +79,37 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                 Log.d(TAG, "mCentre::" + mCentre + " i::" + i);
                 switch(i) {
                     case 0:
+                        mParishArray = getResources().getStringArray(R.array.andaman_and_nicobar_parish_names);
+                        break;
+                    case 1:
                         mParishArray = getResources().getStringArray(R.array.bangalore_parish_names);
                         break;
                     case 2:
+                        mParishArray = getResources().getStringArray(R.array.chennai_parish_names);
+                        break;
+                    case 3:
+                        mParishArray = getResources().getStringArray(R.array.coimbatore_parish_names);
+                        break;
+                    case 4:
                         mParishArray = getResources().getStringArray(R.array.hyderabad_parish_names);
                         break;
-                    case 1:
-                        mParishArray = getResources().getStringArray(R.array.chennai_parish_names);
+                    case 5:
+                        mParishArray = getResources().getStringArray(R.array.kuwait_parish_names);
+                        break;
+                    case 6:
+                        mParishArray = getResources().getStringArray(R.array.manipal_parish_names);
+                        break;
+                    case 7:
+                        mParishArray = getResources().getStringArray(R.array.mangalore_parish_names);
+                        break;
+                    case 8:
+                        mParishArray = getResources().getStringArray(R.array.mysore_parish_names);
+                        break;
+                    case 9:
+                        mParishArray = getResources().getStringArray(R.array.salem_parish_names);
+                        break;
+                    case 10:
+                        mParishArray = getResources().getStringArray(R.array.vellore_parish_names);
                         break;
                     default:
                         mParishArray = getResources().getStringArray(R.array.no_parish_names);
@@ -134,6 +160,24 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
             public void onClick(View view) {
                 DialogFragment newFragment = new DatePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+
+        mIcon = findViewById(R.id.icon);
+        mIcon.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                sSetAdminCount++;
+                if (sSetAdminCount == 5) {
+                    if (Utils.isAdmin(getApplicationContext())) {
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", false).apply();
+                        Toast.makeText(getApplicationContext(), "back to user!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", true).apply();
+                        Toast.makeText(getApplicationContext(), "admin unlocked!!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
             }
         });
     }

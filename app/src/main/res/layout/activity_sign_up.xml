@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -36,19 +37,17 @@
                 android:id="@+id/textViewphoneNumber"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Phone number: "
+                android:gravity="center_vertical"
+                android:text="@string/phone_number"
                 android:visibility="visible"
-                tools:text="Phone number: " />
+                tools:text="Phone Number: " />
 
             <EditText
                 android:id="@+id/field_phoneNumber"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:gravity="center_horizontal"
                 android:hint="@string/phone_title_text"
                 android:inputType="phone"
                 android:maxLines="1" />
@@ -63,20 +62,18 @@
                 android:id="@+id/textViewFullName"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Full Name: "
+                android:gravity="center_vertical"
+                android:text="@string/full_name"
                 android:visibility="visible"
                 tools:text="Full Name: " />
 
             <EditText
                 android:id="@+id/field_fName"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="Full Name"
+                android:hint="@string/full_name_prompt"
                 android:inputType="textPersonName"
                 android:maxLines="1" />
 
@@ -91,20 +88,18 @@
                 android:id="@+id/textViewCentre"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Centre: "
+                android:gravity="center_vertical"
+                android:text="@string/centre"
                 android:visibility="visible"
                 tools:text="Centre: " />
 
 
             <Spinner
                 android:id="@+id/field_Centre"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/centres"
-                android:gravity="center_vertical|center_horizontal"
                 android:paddingBottom="10dp"
                 android:paddingTop="5dp"
                 android:prompt="@string/centre_prompt" />
@@ -119,19 +114,17 @@
                 android:id="@+id/textViewParish"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Parish: "
+                android:gravity="center_vertical"
+                android:text="@string/parish"
                 android:visibility="visible"
                 tools:text="Parish: " />
 
 
             <Spinner
                 android:id="@+id/field_Parish"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal"
                 android:paddingBottom="10dp"
                 android:paddingTop="5dp"
                 android:prompt="@string/parish_prompt"
@@ -148,20 +141,18 @@
                 android:id="@+id/textViewGender"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Gender: "
+                android:gravity="center_vertical"
+                android:text="@string/gender"
                 android:visibility="visible"
                 tools:text="Gender: " />
 
 
             <Spinner
                 android:id="@+id/field_Gender"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/gender"
-                android:gravity="center_vertical|center_horizontal"
                 android:paddingBottom="10dp"
                 android:paddingTop="5dp"
                 android:prompt="@string/gender_prompt"
@@ -178,9 +169,8 @@
                 android:id="@+id/textViewAge"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="D.O.B: "
+                android:gravity="center_vertical"
+                android:text="@string/d_o_b"
                 android:visibility="visible"
                 tools:text="D.O.B: " />
 
@@ -188,38 +178,42 @@
                 android:id="@+id/register_user_detail_Age_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:src="@android:drawable/ic_menu_my_calendar" />
 
             <TextView
                 android:id="@+id/field_Age"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:gravity="center_vertical|center_horizontal"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:text="20/10/2018"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout_buttons"
+        android:id="@+id/button_sign_up"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_sign_up"
-            style="@style/Widget.AppCompat.Button"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_transparent_bg"
-            android:text="@string/sign_up" />
+            android:layout_margin="5dp"
+            android:text="@string/sign_up"
+            android:textColor="@color/colorPrimaryDark" />
 
     </LinearLayout>
 

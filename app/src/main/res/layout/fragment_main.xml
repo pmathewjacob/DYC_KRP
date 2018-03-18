@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context="com.android.app.dyc.krp.MainActivity">
 
     <LinearLayout
@@ -17,6 +16,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="40dp"
+            android:background="@drawable/custom_ripple"
             android:src="@drawable/test_icon" />
 
         <TextView
@@ -70,9 +70,11 @@
 
         <LinearLayout
             android:id="@+id/info_button"
-            style="@android:style/Widget.Material.Light.Button.Inset"
+            style="@android:style/Widget.Material.Button.Borderless"
             android:layout_width="180dp"
-            android:background="@drawable/button_transparent_bg">
+            android:background="@drawable/custom_ripple"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="54dp"
@@ -80,9 +82,7 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/info" />
 
-            <Button
-                android:id="@+id/button1"
-                style="@android:style/Widget.Material.Button.Borderless.Colored"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -93,9 +93,12 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@android:style/Widget.Material.Light.Button.Inset"
+            android:id="@+id/lyrics_button"
+            style="@android:style/Widget.Material.Button.Borderless"
             android:layout_width="180dp"
-            android:background="@drawable/button_transparent_bg">
+            android:background="@drawable/custom_ripple"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="54dp"
@@ -103,9 +106,7 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/lyrics" />
 
-            <Button
-                android:id="@+id/button2"
-                style="@android:style/Widget.Material.Button.Borderless.Colored"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -115,9 +116,12 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@android:style/Widget.Material.Light.Button.Inset"
+            android:id="@+id/schedule_button"
+            style="@android:style/Widget.Material.Button.Borderless"
             android:layout_width="180dp"
-            android:background="@drawable/button_transparent_bg">
+            android:background="@drawable/custom_ripple"
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="54dp"
@@ -125,9 +129,7 @@
                 android:layout_margin="5dp"
                 android:src="@drawable/schedule" />
 
-            <Button
-                android:id="@+id/button3"
-                style="@android:style/Widget.Material.Button.Borderless.Colored"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -138,9 +140,9 @@
 
         <LinearLayout
             android:id="@+id/share_button"
-            style="@android:style/Widget.Material.Light.Button.Inset"
+            style="@android:style/Widget.Material.Button.Borderless"
             android:layout_width="180dp"
-            android:background="@drawable/button_transparent_bg"
+            android:background="@drawable/custom_ripple"
             android:clickable="true"
             android:focusable="true">
 
@@ -148,19 +150,13 @@
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_margin="5dp"
-                android:duplicateParentState="true"
-                android:focusable="false"
                 android:src="@drawable/share" />
 
             <TextView
-                android:id="@+id/button4"
-                style="@android:style/Widget.Material.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_row="1"
-                android:duplicateParentState="true"
-                android:focusable="false"
                 android:text="Share"
                 android:textColor="@color/grey_100" />
         </LinearLayout>

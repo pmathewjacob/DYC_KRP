@@ -1,2 +1,4 @@
 /build
 /src/androidTest/java/com/google/firebase/quickstart/database/NewPostTest.java
+/app.iml
+/google-services.json

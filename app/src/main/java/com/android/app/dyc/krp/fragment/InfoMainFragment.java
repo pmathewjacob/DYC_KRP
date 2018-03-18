@@ -7,12 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.app.dyc.krp.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class InfoMainFragment extends Fragment {
+public class InfoMainFragment extends Fragment implements OnMapReadyCallback {
 
     private static final String TAG = "InfoMainFragment";
 
@@ -33,7 +40,8 @@ public class InfoMainFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END create_database_reference]
 
-
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         return rootView;
     }
 
@@ -60,4 +68,17 @@ public class InfoMainFragment extends Fragment {
                 .limitToFirst(100);
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng location = new LatLng(12.911199, 77.707425);
+        googleMap.addMarker(new MarkerOptions().position(location)
+                .title("Nirjhari Conference Centre"));
+        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        //Build camera position
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(location)
+                .zoom(17).build();
+        //Zoom in and animate the camera.
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
 }
