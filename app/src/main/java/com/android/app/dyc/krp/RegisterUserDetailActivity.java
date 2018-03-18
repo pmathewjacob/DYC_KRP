@@ -63,16 +63,12 @@ public class RegisterUserDetailActivity extends BaseActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
         if (i == R.id.action_delete && mPostReference != null) {
-            deleteData(mPostReference);
+            Utils.deleteData(mPostReference);
             finish();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void deleteData(DatabaseReference reference) {
-        reference.setValue(null);
     }
 
     @Override

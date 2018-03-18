@@ -30,7 +30,7 @@
         <activity
             android:name="com.android.app.dyc.krp.InfoActivity"
             android:parentActivityName="com.android.app.dyc.krp.MainActivity" />
-        <activity android:name="com.android.app.dyc.krp.PostDetailActivity" />
+        <activity android:name="com.android.app.dyc.krp.PostDetailActivity"  android:parentActivityName="com.android.app.dyc.krp.MainActivity"/>
         <activity android:name="com.android.app.dyc.krp.PhoneAuthActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -62,6 +62,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
     private EditText mPhoneNumberField;
     private EditText mVerificationField;
+    private EditText mNameField;
 
     private Button mStartButton;
     private Button mVerifyButton;
@@ -85,6 +86,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         mDetailText = findViewById(R.id.detail);
 
         mPhoneNumberField = findViewById(R.id.field_phone_number);
+        mNameField = findViewById(R.id.field_name);
         mVerificationField = findViewById(R.id.field_verification_code);
 
         mStartButton = findViewById(R.id.button_start_verification);
@@ -186,7 +188,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         updateUI(currentUser);
 
         // [START_EXCLUDE]
-        if (mVerificationInProgress && validatePhoneNumber()) {
+        if (mVerificationInProgress && validateForm()) {
             startPhoneNumberVerification(mPhoneNumberField.getText().toString());
         }
         // [END_EXCLUDE]
@@ -363,10 +365,14 @@ public class PhoneAuthActivity extends AppCompatActivity implements
         }
     }
 
-    private boolean validatePhoneNumber() {
+    private boolean validateForm() {
         String phoneNumber = mPhoneNumberField.getText().toString();
+        String name = mNameField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
             mPhoneNumberField.setError("Invalid phone number.");
+            return false;
+        } else if (TextUtils.isEmpty(name)) {
+            mNameField.setError("name not present");
             return false;
         }
 
@@ -387,6 +393,10 @@ public class PhoneAuthActivity extends AppCompatActivity implements
 
     private void onAuthSuccess(FirebaseUser user) {
         String username = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("username", "user");
+        if (mNameField.getText() != null && !mNameField.getText().toString().isEmpty()) {
+            PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("username", mNameField.getText().toString()).apply();
+            username = mNameField.getText().toString();
+        }
 
         // Write new user
         writeNewUser(user.getUid(), username, user.getPhoneNumber());
@@ -410,7 +420,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_start_verification:
-                if (!validatePhoneNumber()) {
+                if (!validateForm()) {
                     return;
                 }
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());

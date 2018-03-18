@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,7 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.android.app.dyc.krp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,40 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (Utils.isAdmin(getApplicationContext())) {
+            getMenuInflater().inflate(R.menu.menu_user_detail, menu);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.action_delete && mPostReference != null) {
+            deleteData(mPostKey);
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void deleteData(String key) {
+        FirebaseDatabase.getInstance().getReference()
+                .child("user-posts")
+                .child(Utils.getUid())
+                .child(key)
+                .setValue(null);
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("posts")
+                .child(key)
+                .setValue(null);
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -88,9 +123,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 // Get Post object and use the values to update the UI
                 Post post = dataSnapshot.getValue(Post.class);
                 // [START_EXCLUDE]
-                mAuthorView.setText(post.author);
-                mTitleView.setText(post.title);
-                mBodyView.setText(post.body);
+                if (post != null) {
+                    mAuthorView.setText(post.author);
+                    mTitleView.setText(post.title);
+                    mBodyView.setText(post.body);
+                }
                 // [END_EXCLUDE]
             }
 
