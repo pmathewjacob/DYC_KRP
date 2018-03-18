@@ -189,7 +189,6 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="20/10/2018"
                 android:textSize="20dp" />
 
         </LinearLayout>
