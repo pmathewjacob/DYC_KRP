@@ -1,8 +1,6 @@
 package com.android.app.dyc.krp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -29,7 +27,6 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.android.app.dyc.krp.R;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +43,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     private static final int STATE_VERIFY_SUCCESS = 4;
     private static final int STATE_SIGNIN_FAILED = 5;
     private static final int STATE_SIGNIN_SUCCESS = 6;
-    private static boolean mSignIn = false;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -76,7 +72,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
-        mSignIn = false;
         // Restore instance state
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
@@ -176,7 +171,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 // [START_EXCLUDE]
                 // Update UI
                 updateUI(STATE_CODE_SENT);
-                mSignIn = true;
                 // [END_EXCLUDE]
             }
         };
@@ -419,7 +413,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                 if (!validatePhoneNumber()) {
                     return;
                 }
-
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());
                 break;
             case R.id.button_verify_phone:
@@ -428,7 +421,6 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                     mVerificationField.setError("Cannot be empty.");
                     return;
                 }
-
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.button_resend:
@@ -437,6 +429,7 @@ public class PhoneAuthActivity extends AppCompatActivity implements
             case R.id.sign_out_button:
                 signOut();
                 break;
+            default:
         }
     }
 }

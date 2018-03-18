@@ -16,12 +16,7 @@ import android.widget.TextView;
 import com.android.app.dyc.krp.ComingSoonActivity;
 import com.android.app.dyc.krp.InfoActivity;
 import com.android.app.dyc.krp.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -29,8 +24,6 @@ public class MainFragment extends Fragment {
 
     private static final String TAG = "MainFragment";
 
-    // [START define_database_reference]
-    private DatabaseReference mDatabase;
     private LinearLayout mShare;
     private LinearLayout mInfo;
     private LinearLayout mLyrics;
@@ -39,19 +32,8 @@ public class MainFragment extends Fragment {
     private TextView mCountdownTimer;
     private long mStartTime;
     private long mLastClickTime = 0;
-    // [END define_database_reference]
 
     public MainFragment() {}
-
-    public static String getDate(long milliSeconds, String dateFormat) {
-        // Create a DateFormatter object for displaying date in specified format.
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(milliSeconds);
-        return formatter.format(calendar.getTime());
-    }
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -59,9 +41,6 @@ public class MainFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        // [START create_database_reference]
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        // [END create_database_reference]
         mIcon = rootView.findViewById(R.id.icon);
         mIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,18 +163,6 @@ public class MainFragment extends Fragment {
         sAux = sAux + "https://play.google.com/store/apps/details?id=com.android.app.dyc.krp";
         i.putExtra(Intent.EXTRA_TEXT, sAux);
         startActivity(Intent.createChooser(i, "Share via"));
-    }
-
-    public String getUid() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
-
-    public Query getQuery(DatabaseReference databaseReference) {
-
-        return databaseReference
-                .child("register")
-                .child(getUid())
-                .limitToFirst(100);
     }
 
 }

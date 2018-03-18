@@ -27,7 +27,7 @@ import java.util.Map;
 public class SignUpActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "SignUpActivity";
-    private static int sSetAdminCount = 0;
+    private int mSetAdminCount = 0;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private EditText mPhoneNumberField;
@@ -50,7 +50,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        sSetAdminCount = 0;
+        mSetAdminCount = 0;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
@@ -167,8 +167,8 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mIcon.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                sSetAdminCount++;
-                if (sSetAdminCount == 5) {
+                mSetAdminCount++;
+                if (mSetAdminCount == 5) {
                     if (Utils.isAdmin(getApplicationContext())) {
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", false).apply();
                         Toast.makeText(getApplicationContext(), "back to user!!", Toast.LENGTH_SHORT).show();
