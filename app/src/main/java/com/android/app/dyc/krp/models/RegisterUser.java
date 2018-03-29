@@ -16,7 +16,8 @@ public class RegisterUser {
 
     public String phoneNumber;
     public String parish;
-    public String age;
+    public String center;
+    public String dob;
     public String fullName;
     public String gender;
 
@@ -24,12 +25,13 @@ public class RegisterUser {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public RegisterUser(String phoneNumber, String fullName, String parish, String age, String gender) {
+    public RegisterUser(String phoneNumber, String fullName, String center, String parish, String dob, String gender) {
         this.phoneNumber = phoneNumber;
         this.fullName = fullName;
         this.parish = parish;
-        this.age = age;
+        this.dob = dob;
         this.gender = gender;
+        this.center = center;
     }
 
     // [START RegisterUser_to_map]
@@ -39,9 +41,9 @@ public class RegisterUser {
         result.put("phoneNumber", phoneNumber);
         result.put("fullName", fullName);
         result.put("parish", parish);
-        result.put("age", age);
+        result.put("dob", dob);
         result.put("gender", gender);
-
+        result.put("center", center);
         return result;
     }
     // [END RegisterUser_to_map]

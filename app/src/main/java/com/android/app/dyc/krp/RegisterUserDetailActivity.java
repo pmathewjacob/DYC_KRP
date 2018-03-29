@@ -92,7 +92,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
                 if (registerUser != null) {
                     mName.setText(registerUser.fullName);
                     mPhoneNumber.setText(registerUser.phoneNumber);
-                    mAge.setText(registerUser.age);
+                    mAge.setText(registerUser.dob);
                     mParish.setText(registerUser.parish);
                     mGender.setText(registerUser.gender);
                 }

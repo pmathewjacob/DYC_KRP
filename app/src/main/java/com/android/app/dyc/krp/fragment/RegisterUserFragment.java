@@ -57,7 +57,6 @@ public class RegisterUserFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END create_database_reference]
 
-
         mButtonLayout = rootView.findViewById(R.id.button_Register_layout);
         mButtonLayout.setOnClickListener(v -> {
             // Launch SignUpActivity

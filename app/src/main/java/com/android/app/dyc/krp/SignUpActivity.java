@@ -197,7 +197,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         final String age = mAgeField.getText().toString();
 
         if(mAuth.getCurrentUser() != null)
-            registerUser(mAuth.getCurrentUser().getUid(), phoneNumber, fullName, mParish, age, mGender);
+            registerUser(mAuth.getCurrentUser().getUid(), phoneNumber, fullName, mCentre, mParish, age, mGender);
         hideProgressDialog();
         // Go to MainActivity
         finish();
@@ -243,10 +243,10 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
     }
 
     // [START basic_write]
-    private void registerUser(String userId, String phoneNumber, String fullName, String parish, String age, String gender) {
-        RegisterUser registerUser = new RegisterUser(phoneNumber, fullName, parish, age, gender);
+    private void registerUser(String userId, String phoneNumber, String fullName, String center, String parish, String age, String gender) {
+        RegisterUser registerUser = new RegisterUser(phoneNumber, fullName, center, parish, age, gender);
 
-        String key = mDatabase.child("register").push().getKey();
+        String key = mDatabase.child("adminRegister").push().getKey();
         Map<String, Object> postValues = registerUser.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/register/" + userId + "/" + key, postValues);
