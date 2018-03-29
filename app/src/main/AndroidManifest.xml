@@ -42,6 +42,7 @@
             android:theme="@style/AppTheme"/>
         <activity android:name=".NewPublicPostActivity" />
         <activity android:name=".ComingSoonActivity" />
+        <activity android:name=".AdminActivity" />
     </application>
 
 </manifest>

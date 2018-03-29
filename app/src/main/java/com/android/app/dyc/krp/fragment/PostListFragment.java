@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.app.dyc.krp.PostDetailActivity;
+import com.android.app.dyc.krp.R;
 import com.android.app.dyc.krp.models.Post;
 import com.android.app.dyc.krp.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -23,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
-import com.android.app.dyc.krp.R;
 
 public abstract class PostListFragment extends Fragment {
 
@@ -86,14 +86,11 @@ public abstract class PostListFragment extends Fragment {
 
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Launch PostDetailActivity
-                        Intent intent = new Intent(getActivity(), PostDetailActivity.class);
-                        intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
-                        startActivity(intent);
-                    }
+                viewHolder.itemView.setOnClickListener(v -> {
+                    // Launch PostDetailActivity
+                    Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+                    intent.putExtra(PostDetailActivity.EXTRA_POST_KEY, postKey);
+                    startActivity(intent);
                 });
 
                 // Determine if the current user has liked this post and set UI accordingly
@@ -104,17 +101,14 @@ public abstract class PostListFragment extends Fragment {
                 }
 
                 // Bind Post to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToPost(model, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View starView) {
-                        // Need to write to both places the post is stored
-                        DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
-                        DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
+                viewHolder.bindToPost(model, starView -> {
+                    // Need to write to both places the post is stored
+                    DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
+                    DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
 
-                        // Run two transactions
-                        onStarClicked(globalPostRef);
-                        onStarClicked(userPostRef);
-                    }
+                    // Run two transactions
+                    onStarClicked(globalPostRef);
+                    onStarClicked(userPostRef);
                 });
             }
         };

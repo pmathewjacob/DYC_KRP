@@ -27,6 +27,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
     private TextView mAge;
     private TextView mParish;
     private TextView mGender;
+    private DatabaseReference mPostReferenceAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,15 @@ public class RegisterUserDetailActivity extends BaseActivity{
             throw new IllegalArgumentException("Must pass EXTRA_POST_KEY");
         }
 
+
         // Initialize Database
-        mPostReference = FirebaseDatabase.getInstance().getReference()
-                .child("register")
-                .child(Utils.getUid())
-                .child(mPostKey);
+            mPostReferenceAdmin = FirebaseDatabase.getInstance().getReference()
+                    .child("adminRegister")
+                    .child(mPostKey);
+            mPostReference = FirebaseDatabase.getInstance().getReference()
+                    .child("register")
+                    .child(Utils.getUid())
+                    .child(mPostKey);
 
         // Initialize Views
         mName = findViewById(R.id.register_user_detail_fName);
@@ -62,8 +67,9 @@ public class RegisterUserDetailActivity extends BaseActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
-        if (i == R.id.action_delete && mPostReference != null) {
+        if (i == R.id.action_delete && mPostReference != null && mPostReferenceAdmin != null) {
             Utils.deleteData(mPostReference);
+            Utils.deleteData(mPostReferenceAdmin);
             finish();
             return true;
         } else {
@@ -104,6 +110,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
             }
         };
         mPostReference.addValueEventListener(postListener);
+        mPostReferenceAdmin.addValueEventListener(postListener);
         // [END post_value_event_listener]
 
         // Keep copy of post listener so we can remove it when app stops
@@ -117,6 +124,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
         // Remove post value event listener
         if (mPostListener != null) {
             mPostReference.removeEventListener(mPostListener);
+            mPostReferenceAdmin.removeEventListener(mPostListener);
         }
     }
 }

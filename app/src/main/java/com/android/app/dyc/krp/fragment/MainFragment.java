@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.app.dyc.krp.AdminActivity;
 import com.android.app.dyc.krp.ComingSoonActivity;
 import com.android.app.dyc.krp.InfoActivity;
 import com.android.app.dyc.krp.R;
+import com.android.app.dyc.krp.Utils;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -28,78 +31,77 @@ public class MainFragment extends Fragment {
     private LinearLayout mInfo;
     private LinearLayout mLyrics;
     private LinearLayout mSchedule;
+    private LinearLayout mAdmin;
     private ImageView mIcon;
     private TextView mCountdownTimer;
     private long mStartTime;
     private long mLastClickTime = 0;
+    private CountDownTimer mCountTimer;
 
-    public MainFragment() {}
+    public MainFragment() {
+    }
 
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
+        if (Utils.isAdmin(getActivity().getApplicationContext())) {
+            mAdmin = rootView.findViewById(R.id.admin_button);
+            mAdmin.setVisibility(View.VISIBLE);
+            mAdmin.setOnClickListener(view -> gotoAdmin());
+        }
+
         mIcon = rootView.findViewById(R.id.icon);
-        mIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alert();
-            }
-        });
+        mIcon.setOnClickListener(view -> alert());
         mShare = rootView.findViewById(R.id.share_button);
-        mShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-                shareVia();
+        mShare.setOnClickListener(view -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+                return;
             }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            shareVia();
         });
 
         mInfo = rootView.findViewById(R.id.info_button);
-        mInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-                startActivity(new Intent(getActivity(), InfoActivity.class));
+        mInfo.setOnClickListener(view -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
             }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), InfoActivity.class));
         });
 
         mLyrics = rootView.findViewById(R.id.lyrics_button);
-        mLyrics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-                startActivity(new Intent(getActivity(), ComingSoonActivity.class));
+        mLyrics.setOnClickListener(view -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
             }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), ComingSoonActivity.class));
         });
 
         mSchedule = rootView.findViewById(R.id.schedule_button);
-        mSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-                startActivity(new Intent(getActivity(), ComingSoonActivity.class));
+        mSchedule.setOnClickListener(view -> {
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
             }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            startActivity(new Intent(getActivity(), ComingSoonActivity.class));
         });
 
-        final Calendar cal = Calendar.getInstance();
-        cal.set(2018, 4, 24);
         mCountdownTimer = rootView.findViewById(R.id.countdown_timer);
-        mStartTime = cal.getTimeInMillis() - System.currentTimeMillis();
+
+        return rootView;
+    }
+
+    private void startCountDown() {
+
+        final Calendar cal = Calendar.getInstance();
+        cal.set(2018, 4, 24, 0, 0, 0);
+        mStartTime = cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        Log.d(TAG, "diff in time 1:: " + (cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) + " current:: " + Calendar.getInstance().getTimeInMillis() + " cal:: " + cal.getTimeInMillis());
         if (mStartTime > 0) {
             final Calendar def = Calendar.getInstance();
             int days = cal.get(Calendar.DAY_OF_YEAR) - def.get(Calendar.DAY_OF_YEAR) - 1;
@@ -108,10 +110,14 @@ public class MainFragment extends Fragment {
             int sec = 59 - def.get(Calendar.SECOND);
             mCountdownTimer.setText(String.format(Locale.ENGLISH, "%d days %d:%d:%d", days, hours, mins, sec));
 
-            new CountDownTimer(mStartTime, 1000) {
+            if (mCountTimer != null) {
+                mCountTimer.cancel();
+            }
+            mCountTimer = new CountDownTimer(mStartTime, 1000) {
 
                 public void onTick(long millisUntilFinished) {
-                    if (cal.getTimeInMillis() - System.currentTimeMillis() > 0) {
+                    if (cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis() >= 0) {
+                        Log.d(TAG, "diff in time :: " + (cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis()));
                         mCountdownTimer.setText(
                                 String.format(Locale.ENGLISH, "%d days %d:%d:%d", cal.get(Calendar.DAY_OF_YEAR) - Calendar.getInstance().get(Calendar.DAY_OF_YEAR) - 1, 23 - Calendar.getInstance().get(Calendar.HOUR_OF_DAY), 59 - Calendar.getInstance().get(Calendar.MINUTE), 59 - Calendar.getInstance().get(Calendar.SECOND)));
                     } else {
@@ -122,13 +128,34 @@ public class MainFragment extends Fragment {
                 public void onFinish() {
                     mCountdownTimer.setText("DYC Started!");
                 }
-            }.start();
+            };
+            mCountTimer.start();
         } else {
+            if (mCountTimer != null) {
+                mCountTimer.cancel();
+            }
             mCountdownTimer.setText("DYC Started!");
         }
 
 
-        return rootView;
+    }
+
+    @Override
+    public void onPause() {
+        if (mCountTimer != null) {
+            mCountTimer.cancel();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        startCountDown();
+    }
+
+    private void gotoAdmin() {
+        startActivity(new Intent(getActivity(), AdminActivity.class));
     }
 
     @Override

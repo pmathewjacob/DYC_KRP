@@ -155,30 +155,24 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
         mCalendarImage = findViewById(R.id.register_user_detail_Age_icon);
 
-        mCalendarImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getSupportFragmentManager(), "datePicker");
-            }
+        mCalendarImage.setOnClickListener(view -> {
+            DialogFragment newFragment = new DatePickerFragment();
+            newFragment.show(getSupportFragmentManager(), "datePicker");
         });
 
         mIcon = findViewById(R.id.icon);
-        mIcon.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                mSetAdminCount++;
-                if (mSetAdminCount == 5) {
-                    if (Utils.isAdmin(getApplicationContext())) {
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", false).apply();
-                        Toast.makeText(getApplicationContext(), "back to user!!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", true).apply();
-                        Toast.makeText(getApplicationContext(), "admin unlocked!!", Toast.LENGTH_SHORT).show();
-                    }
+        mIcon.setOnLongClickListener(view -> {
+            mSetAdminCount++;
+            if (mSetAdminCount == 5) {
+                if (Utils.isAdmin(getApplicationContext())) {
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", false).apply();
+                    Toast.makeText(getApplicationContext(), "back to user!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("admin", true).apply();
+                    Toast.makeText(getApplicationContext(), "admin unlocked!!", Toast.LENGTH_SHORT).show();
                 }
-                return false;
             }
+            return false;
         });
     }
 
@@ -256,6 +250,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         Map<String, Object> postValues = registerUser.toMap();
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/register/" + userId + "/" + key, postValues);
+        childUpdates.put("/adminRegister/" + key, postValues);
 
         mDatabase.updateChildren(childUpdates);
     }

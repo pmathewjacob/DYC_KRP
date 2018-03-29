@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.android.app.dyc.krp.R;
 import com.android.app.dyc.krp.RegisterUserDetailActivity;
 import com.android.app.dyc.krp.SignUpActivity;
+import com.android.app.dyc.krp.Utils;
 import com.android.app.dyc.krp.models.RegisterUser;
 import com.android.app.dyc.krp.viewholder.RegisterUserViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -58,12 +59,9 @@ public class RegisterUserFragment extends Fragment {
 
 
         mButtonLayout = rootView.findViewById(R.id.button_Register_layout);
-        mButtonLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Launch SignUpActivity
-                startActivity(new Intent(getActivity(), SignUpActivity.class));
-            }
+        mButtonLayout.setOnClickListener(v -> {
+            // Launch SignUpActivity
+            startActivity(new Intent(getActivity(), SignUpActivity.class));
         });
         mRecycler = rootView.findViewById(R.id.users_messages_list);
         mRecycler.setHasFixedSize(true);
@@ -114,18 +112,15 @@ public class RegisterUserFragment extends Fragment {
                     }
                 });
 
-                viewHolder.itemView.setOnDragListener(new View.OnDragListener() {
-                    @Override
-                    public boolean onDrag(View view, DragEvent dragEvent) {
-                        switch (dragEvent.getAction()) {
-                            case DragEvent.ACTION_DRAG_ENDED:
-                                mRecycler.removeView(view);
-                                break;
-                            default:
+                viewHolder.itemView.setOnDragListener((view, dragEvent) -> {
+                    switch (dragEvent.getAction()) {
+                        case DragEvent.ACTION_DRAG_ENDED:
+                            mRecycler.removeView(view);
+                            break;
+                        default:
 
-                        }
-                        return false;
                     }
+                    return false;
                 });
             }
         };
@@ -156,10 +151,16 @@ public class RegisterUserFragment extends Fragment {
 
     public Query getQuery(DatabaseReference databaseReference) {
 
-        return databaseReference
-                .child("register")
-                .child(getUid())
-                .limitToFirst(100);
+        if (Utils.isAdmin(getActivity().getApplicationContext())) {
+            return databaseReference
+                    .child("adminRegister")
+                    .orderByValue();
+        } else {
+            return databaseReference
+                    .child("register")
+                    .child(getUid())
+                    .limitToFirst(100);
+        }
     }
 
 }
