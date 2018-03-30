@@ -28,3 +28,9 @@
 -keepclassmembers class com.android.app.dyc.krp.models.** {
     *;
 }
+
+-keep class org.apache.commons.** { *; }
+
+-dontwarn com.opencsv.**
+-dontwarn org.apache.commons.beanutils.**
+-dontwarn org.apache.commons.collections.**

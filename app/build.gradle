@@ -3,7 +3,7 @@ check.dependsOn 'assembleDebugAndroidTest'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.android.app.dyc.krp"
@@ -21,14 +21,21 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
 configurations.all {
     resolutionStrategy.force 'com.android.support:support-annotations:26.1.0'
+    exclude module: 'commons-logging'
+    exclude module: 'http'
 }
 
 dependencies {
