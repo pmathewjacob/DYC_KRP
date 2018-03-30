@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.android.app.dyc.krp.InfoActivity">
+    tools:context="com.mtc.app.dyc.krp.InfoActivity">
 
     <TextView
         style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"

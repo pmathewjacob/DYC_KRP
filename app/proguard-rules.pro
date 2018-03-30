@@ -21,11 +21,11 @@
 -keepattributes EnclosingMethod
 -keepattributes InnerClasses
 
--keep class com.android.app.dyc.krp.viewholder.** {
+-keep class com.mtc.app.dyc.krp.viewholder.** {
     *;
 }
 
--keepclassmembers class com.android.app.dyc.krp.models.** {
+-keepclassmembers class com.mtc.app.dyc.krp.models.** {
     *;
 }
 

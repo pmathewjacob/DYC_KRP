@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.app.dyc.krp">
+    package="com.mtc.app.dyc.krp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,22 +22,22 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
         <activity
-            android:name="com.android.app.dyc.krp.MainActivity"
+            android:name="com.mtc.app.dyc.krp.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.android.app.dyc.krp.NewPostActivity" />
-        <activity android:name="com.android.app.dyc.krp.SignUpActivity" android:parentActivityName="com.android.app.dyc.krp.MainActivity"/>
+        <activity android:name="com.mtc.app.dyc.krp.NewPostActivity" />
+        <activity android:name="com.mtc.app.dyc.krp.SignUpActivity" android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
         <activity
-            android:name="com.android.app.dyc.krp.InfoActivity"
-            android:parentActivityName="com.android.app.dyc.krp.MainActivity" />
-        <activity android:name="com.android.app.dyc.krp.PostDetailActivity"  android:parentActivityName="com.android.app.dyc.krp.MainActivity"/>
-        <activity android:name="com.android.app.dyc.krp.PhoneAuthActivity" >
+            android:name="com.mtc.app.dyc.krp.InfoActivity"
+            android:parentActivityName="com.mtc.app.dyc.krp.MainActivity" />
+        <activity android:name="com.mtc.app.dyc.krp.PostDetailActivity"  android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
+        <activity android:name="com.mtc.app.dyc.krp.PhoneAuthActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.android.app.dyc.krp.RegisterUserDetailActivity"
+        <activity android:name="com.mtc.app.dyc.krp.RegisterUserDetailActivity"
             android:label="User Details"
             android:theme="@style/AppTheme"/>
         <activity android:name=".NewPublicPostActivity" />

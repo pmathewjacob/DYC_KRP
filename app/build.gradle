@@ -6,7 +6,7 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.android.app.dyc.krp"
+        applicationId "com.mtc.app.dyc.krp"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
