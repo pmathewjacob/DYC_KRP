@@ -70,7 +70,6 @@ public class AdminActivity extends BaseActivity {
                                 String temp = iterMini.next();
                                 val[x++] = value.getString(temp);
                             }
-
                             data.add(val);
 
                             Log.d(AdminActivity.class.getName(), val + "");

@@ -9,8 +9,9 @@
     <TextView
         style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/coming_soon"
+        android:gravity="center"
         android:textAlignment="center" />
 
 </FrameLayout>

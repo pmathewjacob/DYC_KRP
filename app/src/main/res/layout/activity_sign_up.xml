@@ -176,8 +176,10 @@
 
             <ImageView
                 android:id="@+id/register_user_detail_Age_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/ThemeOverlay.MyDarkButton"
+                android:background="@drawable/custom_ripple"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@android:drawable/ic_menu_my_calendar" />
 
             <TextView
