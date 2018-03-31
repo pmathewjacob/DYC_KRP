@@ -27,15 +27,26 @@
                     android:layout_height="100dp"
                     android:src="@drawable/image5" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Rt. Rev. Dr. Mathews Mar Makarios Episcopa Thirumeni is the President of Chennai – Bangalore Diocesan Yuvajana Sakhyam. On being called for divine service he left the secular world and joined Kottayam Mar Thoma Theological Seminary in 1975. He was consecrated as Episcopa by Dr. Joseph Mar Thoma Metropolitan on 13th August 2011.
-His personality, deep insights of Theology and noble experience of teaching ministry increases the quality of Thirumeni’s ministry."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rt. Rev. Dr. Mathews Mar Makarios Episcopa"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thirumeni is the President of Chennai – Bangalore Diocesan Yuvajana Sakhyam. On being called for divine service he left the secular world and joined Kottayam Mar Thoma Theological Seminary in 1975. He was consecrated as Episcopa by Dr. Joseph Mar Thoma Metropolitan on 13th August 2011.
+His personality, deep insights of Theology and noble experience of teaching ministry increases the quality of Thirumeni’s ministry."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
 
             <View
@@ -55,14 +66,25 @@ His personality, deep insights of Theology and noble experience of teaching mini
                     android:layout_height="100dp"
                     android:src="@drawable/image6" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Rev. Dr. Joe Joseph Kuruvilla – Main Speaker
-Achen is a Clergy of the Mar Thoma Church who is engaged in Counselling and Ministry. He was brought up in Mumbai. He did his Masters and PhD in Counselling from United Theological Seminary, Bengaluru and has served as professor at the Mar Thoma Theological Seminary, Kottayam. Achen is currently serving as Director and Counsellor at Mar Thoma Counselling Centre, Tiruvalla."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rev. Dr. Joe Joseph Kuruvilla – Main Speaker"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Achen is a Clergy of the Mar Thoma Church who is engaged in Counselling and Ministry. He was brought up in Mumbai. He did his Masters and PhD in Counselling from United Theological Seminary, Bengaluru and has served as professor at the Mar Thoma Theological Seminary, Kottayam. Achen is currently serving as Director and Counsellor at Mar Thoma Counselling Centre, Tiruvalla."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -83,14 +105,25 @@ Achen is a Clergy of the Mar Thoma Church who is engaged in Counselling and Mini
                     android:layout_height="100dp"
                     android:src="@drawable/image7" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Rev. Tony Eapen Varkey – Bible Study Speaker
-Achen is a Clergy of the Mar Thoma Church. He is from Chennai – Bangalore Diocese and was brought up in Chennai. He completed his Bachelors in Divinity from Mar Thoma Theological Seminary, Kottayam and is currently serving as the Assistant Secretary of the Mar Thoma Sunday School Samajam, Tiruvalla."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rev. Tony Eapen Varkey – Bible Study Speaker"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Achen is a Clergy of the Mar Thoma Church. He is from Chennai – Bangalore Diocese and was brought up in Chennai. He completed his Bachelors in Divinity from Mar Thoma Theological Seminary, Kottayam and is currently serving as the Assistant Secretary of the Mar Thoma Sunday School Samajam, Tiruvalla."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -111,14 +144,25 @@ Achen is a Clergy of the Mar Thoma Church. He is from Chennai – Bangalore Dioc
                     android:layout_height="100dp"
                     android:src="@drawable/image8" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Ms. Akkai Padmashali – Special Session
-She is a transgender rights activist and a trans woman. She co-founded Ondede: Dignity, voice, sexuality (meaning convergence in Kannada) and Swatantra, organizations that aim to create awareness about sexuality, sexual diversity and the right to choose one’s sexual orientation. She was conferred the prestigious Karnataka Rajyotsava Award, the second highest civilian award in Karnataka in the field of Social Service."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ms. Akkai Padmashali – Special Session"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="She is a transgender rights activist and a trans woman. She co-founded Ondede: Dignity, voice, sexuality (meaning convergence in Kannada) and Swatantra, organizations that aim to create awareness about sexuality, sexual diversity and the right to choose one’s sexual orientation. She was conferred the prestigious Karnataka Rajyotsava Award, the second highest civilian award in Karnataka in the field of Social Service."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -139,14 +183,25 @@ She is a transgender rights activist and a trans woman. She co-founded Ondede:
                     android:layout_height="100dp"
                     android:src="@drawable/image9" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Rev. John George – Challenge Hour
-He is a clergy of the Mar Thoma Church. Currently Achen is serving as the Vicar of the North Madras Mar Thoma Church, Thiruvottiyur, Chennai. He is a sincere and dedicated clergy of the Mar Thoma Church and has inspired many youths to Christ."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rev. John George – Challenge Hour"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="He is a clergy of the Mar Thoma Church. Currently Achen is serving as the Vicar of the North Madras Mar Thoma Church, Thiruvottiyur, Chennai. He is a sincere and dedicated clergy of the Mar Thoma Church and has inspired many youths to Christ."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -167,14 +222,25 @@ He is a clergy of the Mar Thoma Church. Currently Achen is serving as the Vicar 
                     android:layout_height="100dp"
                     android:src="@drawable/image10" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/grey_300"
-                    android:padding="5dp"
-                    android:text="Mrs. Reena John – Counsellor
-She is a psychologist and is currently working with Canadian International School, Bengaluru as counsellor. She is a sought after speaker at teen and youth meetings."
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mrs. Reena John – Counsellor"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="She is a psychologist and is currently working with Canadian International School, Bengaluru as counsellor. She is a sought after speaker at teen and youth meetings."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
