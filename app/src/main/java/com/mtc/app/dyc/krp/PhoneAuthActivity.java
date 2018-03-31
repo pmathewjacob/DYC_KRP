@@ -139,6 +139,8 @@ public class PhoneAuthActivity extends AppCompatActivity implements
                     // Invalid request
                     // [START_EXCLUDE]
                     mPhoneNumberField.setError("Invalid phone number.");
+                    Snackbar.make(findViewById(android.R.id.content), "Probably country code missing. E.g. for India +91",
+                            Snackbar.LENGTH_SHORT).show();
                     // [END_EXCLUDE]
                 } else if (e instanceof FirebaseTooManyRequestsException) {
                     // The SMS quota for the project has been exceeded
