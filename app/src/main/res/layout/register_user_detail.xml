@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:src="@drawable/test_icon" />
+        android:src="@drawable/icon" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

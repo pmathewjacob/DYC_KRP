@@ -17,7 +17,7 @@
         android:layout_height="72dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:src="@drawable/test_icon" />
+        android:src="@drawable/icon" />
 
     <LinearLayout
         android:id="@+id/layout_signup_items"

@@ -18,7 +18,7 @@
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_with_text" />
 
         <TextView
             style="@style/TextAppearance.AppCompat.Headline"
