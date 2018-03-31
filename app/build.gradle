@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.mtc.app.dyc.krp"
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 100005
         versionName "1.0.0.005"

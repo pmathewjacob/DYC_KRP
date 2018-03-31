@@ -3,7 +3,6 @@ package com.mtc.app.dyc.krp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -14,11 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
@@ -244,31 +240,28 @@ public class PhoneAuthActivity extends AppCompatActivity implements
     // [START sign_in_with_phone]
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
 
-                            FirebaseUser user = task.getResult().getUser();
-                            // [START_EXCLUDE]
-                            updateUI(STATE_SIGNIN_SUCCESS, user);
-                            // [END_EXCLUDE]
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                                // [START_EXCLUDE silent]
-                                mVerificationField.setError("Invalid code.");
-                                // [END_EXCLUDE]
-                            }
+                        FirebaseUser user = task.getResult().getUser();
+                        // [START_EXCLUDE]
+                        updateUI(STATE_SIGNIN_SUCCESS, user);
+                        // [END_EXCLUDE]
+                    } else {
+                        // Sign in failed, display a message and update the UI
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            // The verification code entered was invalid
                             // [START_EXCLUDE silent]
-                            // Update UI
-                            updateUI(STATE_SIGNIN_FAILED);
+                            mVerificationField.setError("Invalid code.");
                             // [END_EXCLUDE]
                         }
+                        // [START_EXCLUDE silent]
+                        // Update UI
+                        updateUI(STATE_SIGNIN_FAILED);
+                        // [END_EXCLUDE]
                     }
                 });
     }

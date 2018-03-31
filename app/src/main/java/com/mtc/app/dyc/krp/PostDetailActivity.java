@@ -297,8 +297,8 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                     // A comment has changed position, use the key to determine if we are
                     // displaying this comment and if so move it.
-                    Comment movedComment = dataSnapshot.getValue(Comment.class);
-                    String commentKey = dataSnapshot.getKey();
+                    //Comment movedComment = dataSnapshot.getValue(Comment.class);
+                    //String commentKey = dataSnapshot.getKey();
 
                     // ...
                 }

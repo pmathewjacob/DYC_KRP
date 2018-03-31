@@ -5,10 +5,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-
-import java.time.LocalDate;
-import java.time.Period;
 
 /*
  * Created by mathewjacob on 27/01/18.
@@ -16,11 +14,12 @@ import java.time.Period;
 
 public class Utils {
 
-    private static boolean sAdmin = false;
-
     @NonNull
     public static String getUid() throws NullPointerException {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null)
+            return firebaseUser.getUid();
+        else return "";
     }
 
     public static boolean isAdmin(final Context appContext) {
@@ -31,11 +30,4 @@ public class Utils {
         reference.setValue(null);
     }
 
-    public static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
-        if ((birthDate != null) && (currentDate != null)) {
-            return Period.between(birthDate, currentDate).getYears();
-        } else {
-            return 0;
-        }
-    }
 }

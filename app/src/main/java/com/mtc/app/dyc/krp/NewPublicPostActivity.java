@@ -45,12 +45,7 @@ public class NewPublicPostActivity extends BaseActivity {
         mBodyField = findViewById(R.id.field_body);
         mSubmitButton = findViewById(R.id.fab_submit_post);
 
-        mSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                submitPost();
-            }
-        });
+        mSubmitButton.setOnClickListener(v -> submitPost());
     }
 
     private void submitPost() {

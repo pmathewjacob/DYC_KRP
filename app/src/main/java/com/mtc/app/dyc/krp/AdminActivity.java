@@ -3,6 +3,7 @@ package com.mtc.app.dyc.krp;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -74,8 +75,6 @@ public class AdminActivity extends BaseActivity {
                             val[x++] = value.getString(temp);
                         }
                         data.add(val);
-
-                        Log.d(AdminActivity.class.getName(), val + "");
                     }
 
                     writer.writeAll(data); // data is adding to csv
@@ -127,7 +126,7 @@ public class AdminActivity extends BaseActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
@@ -136,7 +135,6 @@ public class AdminActivity extends BaseActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Write Permission denied", Toast.LENGTH_LONG).show();
                 }
-                return;
             }
 
             // other 'case' lines to check for other

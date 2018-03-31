@@ -22,8 +22,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.mtc.app.dyc.krp.fragment.ContactUsFragment;
 import com.mtc.app.dyc.krp.fragment.GeneralRulesFragment;
 import com.mtc.app.dyc.krp.fragment.InfoMainFragment;
@@ -35,7 +33,6 @@ public class InfoActivity extends BaseActivity {
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
-    private DatabaseReference mDatabase;
     private Fragment[] mFragments;
     private String[] mFragmentNames;
     private TabLayout mTabLayout;
@@ -45,7 +42,6 @@ public class InfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         // Create the adapter that will return a fragment for each section
 
         mFragments = new Fragment[]{

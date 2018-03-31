@@ -158,17 +158,6 @@ public class MainFragment extends Fragment {
         startActivity(new Intent(getActivity(), AdminActivity.class));
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // Set up FirebaseRecyclerAdapter with the Query
-        //Query registeredUsersQuery = getQuery(mDatabase);
-
-        // Button launches NewPostActivity
-
-    }
-
     public void alert() {
 
         final AlertDialog.Builder alertAdd = new AlertDialog.Builder(

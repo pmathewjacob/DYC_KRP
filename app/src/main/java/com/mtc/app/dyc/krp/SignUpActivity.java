@@ -63,7 +63,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
         mGenderField = findViewById(R.id.field_Gender);
         mSignUpButton = findViewById(R.id.button_sign_up);
         mParishArray = getResources().getStringArray(R.array.bangalore_parish_names);
-        parishAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mParishArray);
+        parishAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mParishArray);
         parishAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
 
@@ -114,7 +114,7 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
                     default:
                         mParishArray = getResources().getStringArray(R.array.no_parish_names);
                 }
-                parishAdapter = new ArrayAdapter<String>(parishAdapter.getContext(), android.R.layout.simple_spinner_item, mParishArray);
+                parishAdapter = new ArrayAdapter<>(parishAdapter.getContext(), android.R.layout.simple_spinner_item, mParishArray);
                 parishAdapter.setDropDownViewResource(android.R.layout
                         .simple_spinner_dropdown_item);
                 mParishField.setAdapter(parishAdapter);

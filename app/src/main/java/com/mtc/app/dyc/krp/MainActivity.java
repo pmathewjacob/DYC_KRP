@@ -27,8 +27,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.mtc.app.dyc.krp.fragment.MainFragment;
 import com.mtc.app.dyc.krp.fragment.MyPostsFragment;
 import com.mtc.app.dyc.krp.fragment.MyTopPostsFragment;
@@ -41,7 +39,6 @@ public class  MainActivity extends BaseActivity {
 
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
-    private DatabaseReference mDatabase;
     private Fragment[] mFragments;
     private String[] mFragmentNames;
     private TabLayout mTabLayout;
@@ -51,7 +48,6 @@ public class  MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         // Create the adapter that will return a fragment for each section
 
         if (Utils.isAdmin(getApplicationContext())) {
@@ -110,11 +106,6 @@ public class  MainActivity extends BaseActivity {
 
         // Button launches NewPostActivity
         findViewById(R.id.fab_new_post).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, NewPostActivity.class)));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override

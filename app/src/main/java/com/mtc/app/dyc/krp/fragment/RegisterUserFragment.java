@@ -9,14 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -41,11 +39,6 @@ public class RegisterUserFragment extends Fragment {
     private LinearLayout mButtonLayout;
 
     public RegisterUserFragment() {}
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -101,14 +94,11 @@ public class RegisterUserFragment extends Fragment {
                 final String postKey = postRef.getKey();
                 Log.d(TAG, "postKey::" + postKey);
                 viewHolder.bindToPost(model);
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Launch RegisterUserDetailActivity
-                        Intent intent = new Intent(getActivity(), RegisterUserDetailActivity.class);
-                        intent.putExtra(RegisterUserDetailActivity.EXTRA_POST_KEY, postKey);
-                        startActivity(intent);
-                    }
+                viewHolder.itemView.setOnClickListener(v -> {
+                    // Launch RegisterUserDetailActivity
+                    Intent intent = new Intent(getActivity(), RegisterUserDetailActivity.class);
+                    intent.putExtra(RegisterUserDetailActivity.EXTRA_POST_KEY, postKey);
+                    startActivity(intent);
                 });
 
                 viewHolder.itemView.setOnDragListener((view, dragEvent) -> {
@@ -144,10 +134,6 @@ public class RegisterUserFragment extends Fragment {
         }
     }
 
-    public String getUid() {
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
-
     public Query getQuery(DatabaseReference databaseReference) {
 
         if (Utils.isAdmin(getActivity().getApplicationContext())) {
@@ -157,7 +143,7 @@ public class RegisterUserFragment extends Fragment {
         } else {
             return databaseReference
                     .child("register")
-                    .child(getUid())
+                    .child(Utils.getUid())
                     .limitToFirst(100);
         }
     }
