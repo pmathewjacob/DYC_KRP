@@ -248,9 +248,11 @@ public class SignUpActivity extends BaseActivity implements View.OnClickListener
 
         String key = mDatabase.child("adminRegister").push().getKey();
         Map<String, Object> postValues = registerUser.toMap();
+        Map<String, Object> postAdminValues = postValues;
+        postAdminValues.put("userId", userId);
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/register/" + userId + "/" + key, postValues);
-        childUpdates.put("/adminRegister/" + key, postValues);
+        childUpdates.put("/adminRegister/" + key, postAdminValues);
 
         mDatabase.updateChildren(childUpdates);
     }

@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mtc.app.dyc.krp.models.RegisterUser;
 
-public class RegisterUserDetailActivity extends BaseActivity{
+public class RegisterUserDetailActivity extends BaseActivity {
 
     public static final String EXTRA_POST_KEY = "post_key";
     private static final String TAG = "RegisterUserDetailAct";
@@ -28,6 +28,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
     private TextView mParish;
     private TextView mGender;
     private DatabaseReference mPostReferenceAdmin;
+    private String mUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +43,9 @@ public class RegisterUserDetailActivity extends BaseActivity{
 
 
         // Initialize Database
-            mPostReferenceAdmin = FirebaseDatabase.getInstance().getReference()
-                    .child("adminRegister")
-                    .child(mPostKey);
-            mPostReference = FirebaseDatabase.getInstance().getReference()
-                    .child("register")
-                    .child(Utils.getUid())
-                    .child(mPostKey);
+        mPostReferenceAdmin = FirebaseDatabase.getInstance().getReference()
+                .child("adminRegister")
+                .child(mPostKey);
 
         // Initialize Views
         mName = findViewById(R.id.register_user_detail_fName);
@@ -67,7 +64,11 @@ public class RegisterUserDetailActivity extends BaseActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
-        if (i == R.id.action_delete && mPostReference != null && mPostReferenceAdmin != null) {
+        if (i == R.id.action_delete && mPostReference != null && mPostReferenceAdmin != null && mUserId != null) {
+            mPostReference = FirebaseDatabase.getInstance().getReference()
+                    .child("register")
+                    .child(mUserId)
+                    .child(mPostKey);
             Utils.deleteData(mPostReference);
             Utils.deleteData(mPostReferenceAdmin);
             finish();
@@ -95,6 +96,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
                     mAge.setText(registerUser.dob);
                     mParish.setText(registerUser.parish);
                     mGender.setText(registerUser.gender);
+                    mUserId = registerUser.userId;
                 }
                 // [END_EXCLUDE]
             }
@@ -109,7 +111,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
                 // [END_EXCLUDE]
             }
         };
-        mPostReference.addValueEventListener(postListener);
+        //mPostReference.addValueEventListener(postListener);
         mPostReferenceAdmin.addValueEventListener(postListener);
         // [END post_value_event_listener]
 
@@ -123,7 +125,7 @@ public class RegisterUserDetailActivity extends BaseActivity{
 
         // Remove post value event listener
         if (mPostListener != null) {
-            mPostReference.removeEventListener(mPostListener);
+            //mPostReference.removeEventListener(mPostListener);
             mPostReferenceAdmin.removeEventListener(mPostListener);
         }
     }

@@ -10,7 +10,7 @@
         style="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/dyc_info1"
         android:textAlignment="center" />
 
@@ -21,6 +21,12 @@
         android:layout_margin="20dp"
         android:text="@string/dyc_info2"
         android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:text="Venue:"/>
 
     <View
         android:layout_width="match_parent"

@@ -24,6 +24,8 @@ import android.support.v4.view.ViewPager;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mtc.app.dyc.krp.fragment.ContactUsFragment;
+import com.mtc.app.dyc.krp.fragment.GeneralRulesFragment;
 import com.mtc.app.dyc.krp.fragment.InfoMainFragment;
 import com.mtc.app.dyc.krp.fragment.InfoThemeFragment;
 
@@ -48,12 +50,16 @@ public class InfoActivity extends BaseActivity {
 
         mFragments = new Fragment[]{
                 new InfoMainFragment(),
-                new InfoThemeFragment()
+                new InfoThemeFragment(),
+                new ContactUsFragment(),
+                new GeneralRulesFragment()
         };
 
         mFragmentNames = new String[]{
                 "Info",
                 "Speakers",
+                "Contact Us",
+                "General Rules"
         };
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 

@@ -147,4 +147,18 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="rules_list">
+        <item>Registration will be closed by 06:00 PM on 25th May 2018.</item>
+        <item>Registration can be done using mobile app, but registration will be confirmed only after submitting the participants list duly signed by the Vicar of the parish along with the registration fee.</item>
+        <item>It is mandatory to carry your Bibles for all the sessions (Mobile Bible Apps are not appreciated)</item>
+        <item>Be on time for all sessions</item>
+        <item>Please do not leave the Campsite premises at any time during the day and night</item>
+        <item>Take care of your belongings</item>
+        <item>Use of mobile phones is permitted only after dinner and before the morning worship. Please avoid bringing it to the venue</item>
+        <item>Conference schedule must be followed strictly</item>
+        <item>Please make sure you leave the rooms, the same way you have received them, clean and organized.</item>
+        <item>Please respect others’ quiet time.</item>
+        <item>Do follow the decorum of DYC and follow the Christian principles</item>
+    </string-array>
+
 </resources>
