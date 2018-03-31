@@ -9,6 +9,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
 
         <meta-data
@@ -23,26 +24,46 @@
             android:value="@string/google_maps_key" />
         <activity
             android:name="com.mtc.app.dyc.krp.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.mtc.app.dyc.krp.NewPostActivity" />
-        <activity android:name="com.mtc.app.dyc.krp.SignUpActivity" android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
+        <activity
+            android:name="com.mtc.app.dyc.krp.NewPostActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.mtc.app.dyc.krp.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
         <activity
             android:name="com.mtc.app.dyc.krp.InfoActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName="com.mtc.app.dyc.krp.MainActivity" />
-        <activity android:name="com.mtc.app.dyc.krp.PostDetailActivity"  android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
-        <activity android:name="com.mtc.app.dyc.krp.PhoneAuthActivity" >
+        <activity
+            android:name="com.mtc.app.dyc.krp.PostDetailActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.mtc.app.dyc.krp.MainActivity"/>
+        <activity
+            android:name="com.mtc.app.dyc.krp.PhoneAuthActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mtc.app.dyc.krp.RegisterUserDetailActivity"
+        <activity
+            android:name="com.mtc.app.dyc.krp.RegisterUserDetailActivity"
+            android:screenOrientation="portrait"
             android:label="User Details"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".NewPublicPostActivity" />
-        <activity android:name=".ComingSoonActivity" />
-        <activity android:name=".AdminActivity" />
+        <activity
+            android:name=".NewPublicPostActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ComingSoonActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AdminActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

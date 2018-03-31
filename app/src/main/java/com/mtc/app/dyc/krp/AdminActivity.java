@@ -34,18 +34,66 @@ public class AdminActivity extends BaseActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private DatabaseReference mDatabase;
-    private Button mExport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_activity);
 
-        mExport = findViewById(R.id.export);
+        Button export = findViewById(R.id.export);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         checkWritePermission();
+        export.setOnClickListener(view -> mDatabase.child("adminRegister")
+                .orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Gson gson = new Gson();
+                String snap = gson.toJson(dataSnapshot.getValue(false), Object.class);
+                showProgressDialog();
+
+                try {
+
+                    JSONObject json = new JSONObject(snap);
+
+                    String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/Users.csv");
+                    CSVWriter writer = new CSVWriter(new FileWriter(csv));
+
+                    List<String[]> data = new ArrayList<>();
+                    Iterator<String> iter = json.keys();
+                    while (iter.hasNext()) {
+                        String key = iter.next();
+                        JSONObject value = (JSONObject) json.get(key);
+                        Iterator<String> iterMini = value.keys();
+                        String val[] = new String[6];
+                        int x = 0;
+                        while (iterMini.hasNext()) {
+                            String temp = iterMini.next();
+                            val[x++] = value.getString(temp);
+                        }
+                        data.add(val);
+
+                        Log.d(AdminActivity.class.getName(), val + "");
+                    }
+
+                    writer.writeAll(data); // data is adding to csv
+                    writer.close();
+
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+                hideProgressDialog();
+                Log.d(AdminActivity.class.getName(), snap);
+                Toast.makeText(getApplicationContext(), "Exported!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }));
 
     }
 
@@ -85,58 +133,6 @@ public class AdminActivity extends BaseActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mExport.setOnClickListener(view -> {
-                        mDatabase.child("adminRegister")
-                                .orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                Gson gson = new Gson();
-                                String snap = gson.toJson(dataSnapshot.getValue(false), Object.class);
-                                showProgressDialog();
-
-                                try {
-
-                                    JSONObject json = new JSONObject(snap);
-
-                                    String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/Users.csv");
-                                    CSVWriter writer = new CSVWriter(new FileWriter(csv));
-
-                                    List<String[]> data = new ArrayList<>();
-                                    Iterator<String> iter = json.keys();
-                                    while (iter.hasNext()) {
-                                        String key = iter.next();
-                                        JSONObject value = (JSONObject) json.get(key);
-                                        Iterator<String> iterMini = value.keys();
-                                        String val[] = new String[6];
-                                        int x = 0;
-                                        while (iterMini.hasNext()) {
-                                            String temp = iterMini.next();
-                                            val[x++] = value.getString(temp);
-                                        }
-                                        data.add(val);
-
-                                        Log.d(AdminActivity.class.getName(), val + "");
-                                    }
-
-                                    writer.writeAll(data); // data is adding to csv
-                                    writer.close();
-
-                                } catch (JSONException | IOException e) {
-                                    e.printStackTrace();
-                                }
-                                hideProgressDialog();
-                                Log.d(AdminActivity.class.getName(), snap);
-                                Toast.makeText(getApplicationContext(), "Exported!", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    });
                 } else {
                     Toast.makeText(getApplicationContext(), "Write Permission denied", Toast.LENGTH_LONG).show();
                 }
