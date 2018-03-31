@@ -68,7 +68,7 @@ public class AdminActivity extends BaseActivity {
                         String key = iter.next();
                         JSONObject value = (JSONObject) json.get(key);
                         Iterator<String> iterMini = value.keys();
-                        String val[] = new String[6];
+                        String val[] = new String[value.length()];
                         int x = 0;
                         while (iterMini.hasNext()) {
                             String temp = iterMini.next();

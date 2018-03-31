@@ -64,7 +64,7 @@ public class RegisterUserDetailActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
-        if (i == R.id.action_delete && mPostReference != null && mPostReferenceAdmin != null && mUserId != null) {
+        if (i == R.id.action_delete && mPostReferenceAdmin != null && mUserId != null) {
             mPostReference = FirebaseDatabase.getInstance().getReference()
                     .child("register")
                     .child(mUserId)
