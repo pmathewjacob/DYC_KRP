@@ -15,10 +15,10 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:listSelector="@color/grey_100"
+        android:listSelector="@color/colorAccent"
         android:clickable="false"
         android:focusable="false"
-        android:background="@color/grey_100"
+        android:background="@color/colorAccent"
         android:layout_marginBottom="40dp"
         android:entries="@array/rules_list" />
 

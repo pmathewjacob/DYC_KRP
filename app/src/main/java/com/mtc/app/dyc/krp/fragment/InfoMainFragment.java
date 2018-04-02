@@ -29,7 +29,9 @@ public class InfoMainFragment extends Fragment implements OnMapReadyCallback {
         View rootView = inflater.inflate(R.layout.fragment_info_main, container, false);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        }
         return rootView;
     }
 

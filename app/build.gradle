@@ -9,8 +9,8 @@ android {
         applicationId "com.mtc.app.dyc.krp"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 100009
-        versionName "1.0.0.009"
+        versionCode 100012
+        versionName "1.0.0.012"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 

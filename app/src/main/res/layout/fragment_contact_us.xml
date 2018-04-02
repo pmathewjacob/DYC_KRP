@@ -3,150 +3,175 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:paddingBottom="40dp">
 
-    <TextView
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:text="Contact Persons:" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rev. Sunil Mathew (Vicar/Centre President)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919845525051"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thomas George Mathews (General Convener)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919742043942"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jissa A Varghese (Joint Convener)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919731038672"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SinuRaj R (Treasurer)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919916706465"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Akhil Varghese (General Arrangement)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919538791794"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stefin Josy (Transportation)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+917829313070"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eric Mathew (Food and Accommodation)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+919986609625"
-        android:textColorLink="@color/colorPrimary" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Liji Susan John (Registration)" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="phone"
-        android:text="+918105095392"
-        android:textColorLink="@color/colorPrimary" />
-
-    <View
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/colorPrimary" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <TextView
-        style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:text="Other links:" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:padding="15dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:text="Facebook:    https://www.facebook.com/DYC2K18/"
-        android:textColorLink="@color/colorPrimary" />
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Contact Persons:" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="email"
-        android:text="Email:    dyc2k18@gmail.com"
-        android:textColorLink="@color/colorPrimary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rev. Sunil Mathew (Vicar/Centre President)" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:text="Instagram:    www.instagram.com/krpyouth"
-        android:textColorLink="@color/colorPrimary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919845525051"
+                android:textColorLink="@color/colorPrimary" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:text="YouTube:     https://www.youtube.com/channel/UCmXY1yFXeDDhjZYE_9iOB5g"
-        android:textColorLink="@color/colorPrimary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thomas George Mathews (General Convener)" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919742043942"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jissa A Varghese (Joint Convener)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919731038672"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SinuRaj R (Treasurer)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919916706465"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Akhil Varghese (General Arrangement)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919538791794"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stefin Josy (Transportation)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+917829313070"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eric Mathew (Food and Accommodation)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+919986609625"
+                android:textColorLink="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Liji Susan John (Registration)" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:text="+918105095392"
+                android:textColorLink="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="2dp"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Other links:" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="email"
+                android:text="Email:    dyc2k18@gmail.com"
+                android:textColorLink="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/facebook_link"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/facebook"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tag="https://www.facebook.com/DYC2K18/" />
+
+                <ImageView
+                    android:id="@+id/instagram_link"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/instagram"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tag="https://www.instagram.com/krpyouth" />
+
+                <ImageView
+                    android:id="@+id/youtube_link"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/youtube"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tag="https://www.youtube.com/channel/UCmXY1yFXeDDhjZYE_9iOB5g" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
