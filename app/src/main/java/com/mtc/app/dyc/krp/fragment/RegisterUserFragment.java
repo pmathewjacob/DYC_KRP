@@ -2,6 +2,7 @@ package com.mtc.app.dyc.krp.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -25,6 +27,8 @@ import com.mtc.app.dyc.krp.Utils;
 import com.mtc.app.dyc.krp.models.RegisterUser;
 import com.mtc.app.dyc.krp.viewholder.RegisterUserViewHolder;
 
+import java.util.Objects;
+
 public class RegisterUserFragment extends Fragment {
 
     private static final String TAG = "RegisterUserFragment";
@@ -37,6 +41,7 @@ public class RegisterUserFragment extends Fragment {
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
     private LinearLayout mButtonLayout;
+    private TextView mCountRegister;
 
     public RegisterUserFragment() {}
 
@@ -57,7 +62,7 @@ public class RegisterUserFragment extends Fragment {
         });
         mRecycler = rootView.findViewById(R.id.users_messages_list);
         mRecycler.setHasFixedSize(true);
-
+        mCountRegister = rootView.findViewById(R.id.count_of_members);
         return rootView;
     }
 
@@ -81,13 +86,13 @@ public class RegisterUserFragment extends Fragment {
         mAdapter = new FirebaseRecyclerAdapter<RegisterUser, RegisterUserViewHolder>(options) {
 
             @Override
-            public RegisterUserViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public RegisterUserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new RegisterUserViewHolder(inflater.inflate(R.layout.item_register_user, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(RegisterUserViewHolder viewHolder, int position, final RegisterUser model) {
+            protected void onBindViewHolder(@NonNull RegisterUserViewHolder viewHolder, int position, @NonNull final RegisterUser model) {
                 final DatabaseReference postRef = getRef(position);
 
                 // Set click listener for the whole post view
@@ -112,10 +117,19 @@ public class RegisterUserFragment extends Fragment {
                     return false;
                 });
             }
+
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                if (mCountRegister != null) {
+                    mCountRegister.setText("Member Count: " + mAdapter.getItemCount());
+                }
+            }
         };
+
+
         mRecycler.setAdapter(mAdapter);
         mRecycler.setItemAnimator(new DefaultItemAnimator());
-
     }
 
     @Override
@@ -136,7 +150,7 @@ public class RegisterUserFragment extends Fragment {
 
     public Query getQuery(DatabaseReference databaseReference) {
 
-        if (Utils.isAdmin(getActivity().getApplicationContext())) {
+        if (Utils.isAdmin(Objects.requireNonNull(getActivity()).getApplicationContext())) {
             return databaseReference
                     .child("adminRegister")
                     .orderByValue();

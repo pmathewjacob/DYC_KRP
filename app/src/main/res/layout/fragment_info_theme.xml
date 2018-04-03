@@ -160,7 +160,7 @@ His personality, deep insights of Theology and noble experience of teaching mini
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="She is a transgender rights activist and a trans woman. She co-founded Ondede: Dignity, voice, sexuality (meaning convergence in Kannada) and Swatantra, organizations that aim to create awareness about sexuality, sexual diversity and the right to choose one’s sexual orientation. She was conferred the prestigious Karnataka Rajyotsava Award, the second highest civilian award in Karnataka in the field of Social Service."
+                        android:text="She is a transgender rights activist and a trans woman. She co-founded Ondede: Dignity, voice, sexuality (meaning convergence in Kannada) and Swatantra, organizations that aim to create awareness about sexuality, sexual diversity and the right to choose one’s sexual orientation. She was conferred the prestigious Karnataka Rajyotsava Award, the second highest civilian award in Karnataka in the field of Social Service."
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                 </LinearLayout>
             </LinearLayout>

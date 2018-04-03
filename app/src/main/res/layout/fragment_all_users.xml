@@ -31,13 +31,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/count_of_members"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_Register_layout"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/users_messages_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/button_Register_layout"
+        android:layout_below="@id/count_of_members"
         android:clipToPadding="false"
         android:padding="5dp"
+        android:layout_marginBottom="40dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/item_register_user" />
 

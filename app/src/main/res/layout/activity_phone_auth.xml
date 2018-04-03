@@ -5,27 +5,26 @@
     android:layout_height="match_parent"
     android:background="@color/grey_100"
     android:orientation="vertical"
-    android:weightSum="4">
+    android:weightSum="8">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="5"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="top|center_horizontal"
             android:src="@drawable/logo_with_text" />
 
         <TextView
             style="@style/TextAppearance.AppCompat.Headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="4dp"
+            android:layout_gravity="top|center_horizontal"
             android:text="Philippians 2:2-7 NIV" />
 
         <TextView
@@ -53,17 +52,29 @@
     </LinearLayout>
 
 
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:background="@color/grey_300"
         android:gravity="center_vertical">
+
+
+        <TextView
+            android:id="@+id/phone_text_hint"
+            style="@style/TextAppearance.Design.Hint"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Note: Enter Phone number with country code" />
 
         <LinearLayout
             android:id="@+id/phone_auth_fields"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/phone_text_hint"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -80,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:hint="Phone number"
-                    android:inputType="phone"/>
+                    android:inputType="phone" />
 
                 <EditText
                     android:id="@+id/field_name"
@@ -88,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:hint="Name"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
 
                 <EditText
                     android:id="@+id/field_verification_code"
@@ -96,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"
                     android:hint="Verification code"
-                    android:inputType="number"/>
+                    android:inputType="number" />
 
             </LinearLayout>
 
