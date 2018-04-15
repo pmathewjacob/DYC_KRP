@@ -27,6 +27,7 @@ import com.mtc.app.dyc.krp.Utils;
 import com.mtc.app.dyc.krp.models.RegisterUser;
 import com.mtc.app.dyc.krp.viewholder.RegisterUserViewHolder;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class RegisterUserFragment extends Fragment {
@@ -85,6 +86,7 @@ public class RegisterUserFragment extends Fragment {
 
         mAdapter = new FirebaseRecyclerAdapter<RegisterUser, RegisterUserViewHolder>(options) {
 
+            @NonNull
             @Override
             public RegisterUserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
@@ -122,7 +124,7 @@ public class RegisterUserFragment extends Fragment {
             public void onDataChanged() {
                 super.onDataChanged();
                 if (mCountRegister != null) {
-                    mCountRegister.setText("Member Count: " + mAdapter.getItemCount());
+                    mCountRegister.setText(String.format(Locale.US, "Member Count: %d", mAdapter.getItemCount()));
                 }
             }
         };

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -35,7 +37,8 @@ public class AdminActivity extends BaseActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private DatabaseReference mDatabase;
-
+    private TextView mTotalCount, mMaleCount, mFemaleCount;
+    private int mMale, mFemale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,10 @@ public class AdminActivity extends BaseActivity {
         Button export = findViewById(R.id.export);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        mTotalCount = findViewById(R.id.total_count);
+        mMaleCount = findViewById(R.id.male_count);
+        mFemaleCount = findViewById(R.id.female_count);
+        mMale = mFemale = 0;
         checkWritePermission();
         export.setOnClickListener(view -> mDatabase.child("adminRegister")
                 .orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
@@ -94,6 +100,33 @@ public class AdminActivity extends BaseActivity {
             }
         }));
 
+        mDatabase.child("adminRegister").orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
+                if (map != null) {
+                    for (Object user :
+                            map.values()) {
+                        if (((HashMap<String, String>) user).get("gender").equalsIgnoreCase("male")) {
+                            mMale++;
+                        } else if (((HashMap<String, String>) user).get("gender").equalsIgnoreCase("female")) {
+                            mFemale++;
+                        }
+                    }
+                    if (mMaleCount != null && mFemaleCount != null && mTotalCount != null) {
+                        mMaleCount.setText(mMale + "");
+                        mFemaleCount.setText(mFemale + "");
+                        mTotalCount.setText(dataSnapshot.getChildrenCount() + "");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void checkWritePermission() {
@@ -125,6 +158,11 @@ public class AdminActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -136,6 +174,8 @@ public class AdminActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "Write Permission denied", Toast.LENGTH_LONG).show();
                 }
             }
+            break;
+            default:
 
             // other 'case' lines to check for other
             // permissions this app might request.
