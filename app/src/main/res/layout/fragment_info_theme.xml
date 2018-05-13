@@ -87,7 +87,6 @@ His personality, deep insights of Theology and noble experience of teaching mini
                 </LinearLayout>
             </LinearLayout>
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -126,7 +125,6 @@ His personality, deep insights of Theology and noble experience of teaching mini
                 </LinearLayout>
             </LinearLayout>
 
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -161,84 +159,6 @@ His personality, deep insights of Theology and noble experience of teaching mini
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="She is a transgender rights activist and a trans woman. She co-founded Ondede: Dignity, voice, sexuality (meaning convergence in Kannada) and Swatantra, organizations that aim to create awareness about sexuality, sexual diversity and the right to choose one’s sexual orientation. She was conferred the prestigious Karnataka Rajyotsava Award, the second highest civilian award in Karnataka in the field of Social Service."
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_margin="2dp"
-                android:background="@color/colorPrimary" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/image9" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_300"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rev. John George – Challenge Hour"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="He is a clergy of the Mar Thoma Church. Currently Achen is serving as the Vicar of the North Madras Mar Thoma Church, Thiruvottiyur, Chennai. He is a sincere and dedicated clergy of the Mar Thoma Church and has inspired many youths to Christ."
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_margin="2dp"
-                android:background="@color/colorPrimary" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/image10" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/grey_300"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mrs. Reena John – Counsellor"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Header" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="She is a psychologist and is currently working with Canadian International School, Bengaluru as counsellor. She is a sought after speaker at teen and youth meetings."
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                 </LinearLayout>
             </LinearLayout>
