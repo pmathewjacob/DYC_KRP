@@ -18,6 +18,7 @@ import com.mtc.app.dyc.krp.AdminActivity;
 import com.mtc.app.dyc.krp.ComingSoonActivity;
 import com.mtc.app.dyc.krp.InfoActivity;
 import com.mtc.app.dyc.krp.R;
+import com.mtc.app.dyc.krp.ScheduleActivity;
 import com.mtc.app.dyc.krp.Utils;
 
 import java.util.Calendar;
@@ -88,7 +89,7 @@ public class MainFragment extends Fragment {
                 return;
             }
             mLastClickTime = SystemClock.elapsedRealtime();
-            startActivity(new Intent(getActivity(), ComingSoonActivity.class));
+            startActivity(new Intent(getActivity(), ScheduleActivity.class));
         });
 
         mCountdownTimer = rootView.findViewById(R.id.countdown_timer);
