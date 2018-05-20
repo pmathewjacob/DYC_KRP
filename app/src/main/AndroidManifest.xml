@@ -64,7 +64,8 @@
         <activity
             android:name=".AdminActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".ScheduleActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
